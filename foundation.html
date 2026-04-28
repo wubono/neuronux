@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neuron — Foundation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+  <style>
+    :root {
+      /* ── Brand ── */
+      --color-brand-50:  #EEF2FF;
+      --color-brand-100: #D0DBFF;
+      --color-brand-200: #A3B8FF;
+      --color-brand-300: #7C9EFF;
+      --color-brand-400: #4B78F5;
+      --color-brand-500: #1A56DB;
+      --color-brand-600: #1343B8;
+      --color-brand-700: #0E3290;
+      --color-brand-800: #092370;
+      --color-brand-900: #051550;
+
+      /* ── Success ── */
+      --color-success-50:  #ECFDF5;
+      --color-success-100: #A7F3D0;
+      --color-success-500: #059669;
+      --color-success-600: #047857;
+      --color-success-green: #10B981;
+
+      /* ── Warning ── */
+      --color-warning-50:  #FFFBEB;
+      --color-warning-100: #FDE68A;
+      --color-warning-500: #D97706;
+      --color-warning-600: #B45309;
+
+      /* ── Danger ── */
+      --color-danger-50:  #FEF2F2;
+      --color-danger-100: #FECACA;
+      --color-danger-400: #F87171;
+      --color-danger-500: #EF4444;
+      --color-danger-600: #DC2626;
+
+      /* ── Neutrals / Surface ── */
+      --color-white:      #FFFFFF;
+      --color-surface:    #FFFFFF;
+      --color-page-bg:    #F8FAFC;
+      --color-gray-50:  #F8FAFC;
+      --color-gray-100: #F1F5F9;
+      --color-gray-200: #E2E8F0;
+      --color-gray-300: #CBD5E1;
+      --color-gray-400: #94A3B8;
+      --color-gray-500: #64748B;
+      --color-gray-600: #475569;
+      --color-gray-700: #334155;
+      --color-gray-800: #1E293B;
+      --color-gray-900: #0A1929;
+
+      /* ── Semantic: Text ── */
+      --color-text-primary:   var(--color-gray-900);
+      --color-text-secondary: var(--color-gray-500);
+      --color-text-muted:     var(--color-gray-400);
+      --color-text-inverse:   var(--color-white);
+      --color-text-brand:     var(--color-brand-600);
+      --color-text-success:   var(--color-success-600);
+      --color-text-warning:   var(--color-warning-600);
+      --color-text-danger:    var(--color-danger-600);
+
+      /* ── Semantic: Border ── */
+      --color-border-default: var(--color-gray-200);
+      --color-border-subtle:  var(--color-gray-100);
+      --color-border-strong:  var(--color-gray-300);
+      --color-border-brand:   var(--color-brand-500);
+      --color-border-success: var(--color-success-500);
+      --color-border-warning: var(--color-warning-500);
+      --color-border-danger:  var(--color-danger-500);
+
+      /* ── Semantic: Background ── */
+      --color-bg-page:    var(--color-page-bg);
+      --color-bg-surface: var(--color-surface);
+      --color-bg-subtle:  var(--color-gray-100);
+      --color-bg-brand:   var(--color-brand-50);
+      --color-bg-success: var(--color-success-50);
+      --color-bg-warning: var(--color-warning-50);
+      --color-bg-danger:  var(--color-danger-50);
+
+      /* ── Gradients ── */
+      --gradient-brand:    linear-gradient(29.56deg, var(--color-brand-500) 13.4%, #2563EB 50%, #1D4ED8 86.6%);
+      --gradient-dark:     linear-gradient(135deg, var(--color-gray-900) 0%, var(--color-gray-800) 100%);
+      --gradient-progress: linear-gradient(90deg, var(--color-brand-500), var(--color-brand-200));
+
+      /* ── Typography ── */
+      --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono:    'Inter', system-ui, -apple-system, sans-serif;
+
+      --text-2xs:  10px;
+      --text-xs:   12px;
+      --text-sm:   12px;
+      --text-base: 14px;
+      --text-lg:   16px;
+      --text-xl:   18px;
+      --text-2xl:  20px;
+      --text-3xl:  24px;
+      --text-4xl:  32px;
+      --text-5xl:  38px;
+
+      --weight-regular:  400;
+      --weight-medium:   500;
+      --weight-semibold: 600;
+      --weight-bold:     700;
+
+      --leading-tight:   1.2;
+      --leading-snug:    1.4;
+      --leading-normal:  1.5;
+      --leading-relaxed: 1.6;
+
+      --tracking-tight:  -0.5px;
+      --tracking-normal: 0;
+      --tracking-wide:   0.04em;
+      --tracking-wider:  0.07em;
+
+      /* ── Spacing ── */
+      --space-1:  4px;
+      --space-2:  8px;
+      --space-3:  12px;
+      --space-4:  16px;
+      --space-5:  20px;
+      --space-6:  24px;
+      --space-7:  28px;
+      --space-8:  32px;
+      --space-9:  36px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+
+      /* ── Radius ── */
+      --radius-xs:   4px;
+      --radius-sm:   6px;
+      --radius-md:   10px;
+      --radius-lg:   14px;
+      --radius-xl:   18px;
+      --radius-full: 9999px;
+
+      /* ── Shadows ── */
+      --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-sm: 0 2px 6px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+      --shadow-xl: 0 16px 40px rgba(0,0,0,0.16);
+
+      /* ── Borders ── */
+      --border-default: 1px solid var(--color-border-default);
+      --border-subtle:  1px solid var(--color-border-subtle);
+      --border-strong:  1px solid var(--color-border-strong);
+
+      /* ── Layout ── */
+      --sidebar-width:        224px;
+      --topbar-height:        64px;
+      --banner-height:        40px;
+      --global-topbar-height: 56px;
+      --content-gap:          var(--space-4);
+
+      /* ── 8px Grid System ── */
+      --grid-unit:    8px;
+      --grid-gutter:  24px;   /* 3u — column gap */
+      --grid-margin:  32px;   /* 4u — content edge padding */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      font-weight: var(--weight-regular);
+      line-height: var(--leading-normal);
+      color: var(--color-text-primary);
+      background: var(--color-bg-page);
+      min-width: 1280px;
+    }
+
+    /* ── Header ── */
+    .doc-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 56px;
+      background: var(--color-bg-surface);
+      border-bottom: var(--border-default);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--space-8);
+    }
+    .doc-header-left {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .wordmark {
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-brand-500);
+      letter-spacing: var(--tracking-tight);
+    }
+    .header-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--color-border-default);
+    }
+    .header-subtitle {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .header-link {
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-brand);
+      text-decoration: none;
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      border: var(--border-default);
+      transition: background 0.15s;
+    }
+    .header-link:hover { background: var(--color-bg-brand); }
+
+    /* ── Sidebar ── */
+    .doc-sidebar {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      width: 220px;
+      height: calc(100vh - 56px);
+      background: var(--color-gray-50);
+      border-right: var(--border-default);
+      padding: var(--space-6) 0;
+      overflow-y: auto;
+    }
+    .sidebar-section-label {
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      padding: var(--space-5) var(--space-5) var(--space-2);
+    }
+    .sidebar-link {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      padding: var(--space-2) var(--space-5);
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar-link:hover {
+      color: var(--color-text-primary);
+      background: var(--color-bg-subtle);
+    }
+    .sidebar-link.active {
+      color: var(--color-text-brand);
+      background: var(--color-bg-brand);
+      border-left-color: var(--color-brand-500);
+      font-weight: var(--weight-semibold);
+    }
+
+    /* ── Content ── */
+    .doc-content {
+      margin-left: 220px;
+      padding: var(--space-12) var(--space-16);
+      max-width: none;
+    }
+
+    /* ── Section ── */
+    .doc-section {
+      margin-bottom: var(--space-16);
+      scroll-margin-top: 72px;
+    }
+    .section-heading {
+      font-family: var(--font-heading);
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      line-height: var(--leading-tight);
+      border-bottom: var(--border-default);
+      padding-bottom: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+    .subsection-heading {
+      font-family: var(--font-heading);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-top: var(--space-8);
+      margin-bottom: var(--space-4);
+    }
+
+    /* ── Token pill ── */
+    .token {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--color-text-brand);
+      background: var(--color-bg-brand);
+      padding: 2px 6px;
+      border-radius: var(--radius-xs);
+      white-space: nowrap;
+    }
+
+    /* ── Hierarchy ── */
+    .hierarchy-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+    .hierarchy-col {
+      flex: 1;
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-6);
+    }
+    .hierarchy-col-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-1);
+    }
+    .hierarchy-col-heading {
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .hierarchy-col-desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--leading-relaxed);
+      margin-bottom: var(--space-5);
+    }
+    .hierarchy-token-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-2) 0;
+      border-top: var(--border-subtle);
+      gap: var(--space-3);
+    }
+    .hierarchy-token-name { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--color-text-brand); }
+    .hierarchy-token-val {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-secondary);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .color-pill {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: var(--radius-xs);
+      border: 1px solid rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+    .hierarchy-arrow {
+      font-size: 24px;
+      color: var(--color-brand-400);
+      flex-shrink: 0;
+    }
+    .hierarchy-callout {
+      background: var(--color-bg-brand);
+      border-left: 3px solid var(--color-brand-200);
+      border-radius: var(--radius-sm);
+      padding: var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--leading-relaxed);
+    }
+
+    /* ── Color swatches ── */
+    .swatch-row {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-4);
+    }
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .swatch-box {
+      width: 72px;
+      height: 56px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0,0,0,0.08);
+      flex-shrink: 0;
+    }
+    .swatch-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--color-text-muted);
+      text-align: center;
+      line-height: var(--leading-relaxed);
+    }
+    .swatch-badge {
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      color: var(--color-brand-700);
+      background: var(--color-brand-100);
+      padding: 1px 5px;
+      border-radius: var(--radius-xs);
+      margin-top: 2px;
+    }
+
+    /* ── Semantic aliases ── */
+    .alias-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .alias-col {
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      padding: var(--space-5);
+    }
+    .alias-col-header {
+      font-family: var(--font-heading);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-3);
+      border-bottom: var(--border-default);
+    }
+    .alias-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-2) 0;
+    }
+    .alias-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+    .alias-name { font-family: var(--font-mono); font-size: var(--text-base); color: var(--color-text-primary); }
+    .alias-arrow { color: var(--color-text-muted); font-size: var(--text-sm); }
+    .alias-ref { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-muted); }
+
+    /* ── Gradients ── */
+    .gradient-row {
+      display: flex;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+    .gradient-card {
+      width: 200px;
+    }
+    .gradient-box {
+      width: 200px;
+      height: 80px;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-3);
+    }
+    .gradient-name { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-brand); margin-bottom: var(--space-1); }
+    .gradient-desc { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); }
+
+    /* ── Typography ── */
+    .font-cards {
+      display: flex;
+      gap: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+    .font-card {
+      flex: 1;
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      padding: var(--space-6);
+    }
+    .font-card-aa {
+      font-size: 64px;
+      line-height: 1;
+      color: var(--color-brand-500);
+      margin-bottom: var(--space-4);
+    }
+    .font-card-token { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-2); }
+    .font-card-stack { font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-3); }
+    .font-card-use { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); }
+
+    /* ── Type scale table ── */
+    .type-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .type-table th {
+      background: var(--color-bg-subtle);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      text-align: left;
+      padding: var(--space-3) var(--space-4);
+      border-bottom: var(--border-default);
+    }
+    .type-table td {
+      padding: var(--space-3) var(--space-4);
+      border-bottom: var(--border-subtle);
+      vertical-align: middle;
+    }
+    .type-table tr:last-child td { border-bottom: none; }
+    .type-table tr:hover td { background: var(--color-bg-subtle); }
+    .type-table .cell-mono { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-brand); }
+    .type-table .cell-muted { font-size: var(--text-sm); color: var(--color-text-muted); }
+    .type-table .cell-preview { color: var(--color-text-primary); }
+
+    /* ── Weight cards ── */
+    .weight-cards {
+      display: flex;
+      gap: var(--space-4);
+    }
+    .weight-card {
+      flex: 1;
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      padding: var(--space-5);
+      text-align: center;
+    }
+    .weight-preview {
+      font-size: var(--text-2xl);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-3);
+      line-height: var(--leading-snug);
+    }
+    .weight-token { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-brand); margin-bottom: var(--space-1); }
+    .weight-value { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+    /* ── Leading & Tracking ── */
+    .leading-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+    .leading-card {
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+    }
+    .leading-token { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-brand); margin-bottom: var(--space-1); }
+    .leading-value { font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-3); }
+    .leading-sample { font-size: var(--text-sm); color: var(--color-text-secondary); }
+    .tracking-card {
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+    }
+    .tracking-token { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-brand); margin-bottom: var(--space-1); }
+    .tracking-value { font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-3); }
+    .tracking-sample { font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-text-primary); }
+
+    /* ── Spacing ── */
+    .spacing-row {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-5);
+      padding: var(--space-6);
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+    }
+    .spacing-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .spacing-bar {
+      background: var(--color-brand-200);
+      width: 36px;
+      border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+    }
+    .spacing-name { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--color-text-muted); text-align: center; }
+    .spacing-px { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--color-text-muted); text-align: center; }
+
+    /* ── Radius ── */
+    .radius-row {
+      display: flex;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+    .radius-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .radius-box {
+      width: 64px;
+      height: 64px;
+      background: var(--color-brand-200);
+    }
+    .radius-name { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted); text-align: center; }
+    .radius-value { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--color-text-muted); text-align: center; }
+
+    /* ── Shadows ── */
+    .shadow-row {
+      display: flex;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+      padding: var(--space-8);
+      background: var(--color-bg-subtle);
+      border-radius: var(--radius-md);
+    }
+    .shadow-card-wrap { display: flex; flex-direction: column; gap: var(--space-3); }
+    .shadow-card {
+      width: 120px;
+      height: 80px;
+      background: var(--color-bg-surface);
+      border-radius: var(--radius-md);
+    }
+    .shadow-name { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-brand); }
+    .shadow-val { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--color-text-muted); max-width: 140px; word-break: break-all; line-height: var(--leading-relaxed); }
+
+    /* ── Borders ── */
+    .border-cards {
+      display: flex;
+      gap: var(--space-5);
+    }
+    .border-demo {
+      flex: 1;
+      height: 56px;
+      background: var(--color-bg-surface);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      padding: 0 var(--space-4);
+    }
+    .border-info { margin-top: var(--space-3); }
+    .border-token { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-brand); }
+    .border-resolved { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--color-text-muted); margin-top: 2px; }
+    .border-item { display: flex; flex-direction: column; }
+
+    /* ── Layout table ── */
+    .layout-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .layout-table th {
+      background: var(--color-bg-subtle);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      text-align: left;
+      padding: var(--space-3) var(--space-4);
+      border-bottom: var(--border-default);
+    }
+    .layout-table td {
+      padding: var(--space-3) var(--space-4);
+      border-bottom: var(--border-subtle);
+      font-size: var(--text-sm);
+    }
+    .layout-table tr:last-child td { border-bottom: none; }
+    .layout-table tr:nth-child(even) td { background: var(--color-bg-subtle); }
+    .layout-table .col-token { font-family: var(--font-mono); color: var(--color-text-brand); }
+    .layout-table .col-value { font-family: var(--font-mono); color: var(--color-text-secondary); }
+    .layout-table .col-desc { color: var(--color-text-secondary); }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="doc-header">
+    <div class="doc-header-left">
+      <span class="wordmark">neuron</span>
+      <div class="header-divider"></div>
+      <span class="header-subtitle">Foundation · Design Tokens</span>
+    </div>
+    <div class="header-right">
+      <a class="header-link" href="components.html">Components &rarr;</a>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="doc-sidebar" id="doc-sidebar">
+    <div class="sidebar-section-label">Sections</div>
+    <a class="sidebar-link" href="#hierarchy">Token Hierarchy</a>
+    <a class="sidebar-link" href="#colors">Colors</a>
+    <a class="sidebar-link" href="#typography">Typography</a>
+    <a class="sidebar-link" href="#spacing">Spacing</a>
+    <a class="sidebar-link" href="#radius">Border Radius</a>
+    <a class="sidebar-link" href="#shadows">Shadows</a>
+    <a class="sidebar-link" href="#borders">Borders</a>
+    <a class="sidebar-link" href="#layout">Layout Tokens</a>
+  </nav>
+
+  <!-- Content -->
+  <main class="doc-content">
+
+    <!-- ── 1. Token Hierarchy ── -->
+    <section class="doc-section" id="hierarchy">
+      <h2 class="section-heading">Token Hierarchy</h2>
+
+      <div class="hierarchy-row">
+        <!-- Column 1 -->
+        <div class="hierarchy-col">
+          <div class="hierarchy-col-title">01</div>
+          <div class="hierarchy-col-heading">Primitives</div>
+          <div class="hierarchy-col-desc">Raw named values. The single source of truth for every color, size, and style.</div>
+          <div class="hierarchy-token-row">
+            <span class="hierarchy-token-name">--color-brand-500</span>
+            <span class="hierarchy-token-val"><span class="color-pill" style="background:#1A56DB;"></span>#1A56DB</span>
+          </div>
+          <div class="hierarchy-token-row">
+            <span class="hierarchy-token-name">--space-4</span>
+            <span class="hierarchy-token-val">16px</span>
+          </div>
+          <div class="hierarchy-token-row">
+            <span class="hierarchy-token-name">--radius-md</span>
+            <span class="hierarchy-token-val">10px</span>
+          </div>
+        </div>
+
+        <div class="hierarchy-arrow">&rarr;</div>
+
+        <!-- Column 2 -->
+        <div class="hierarchy-col">
+          <div class="hierarchy-col-title">02</div>
+          <div class="hierarchy-col-heading">Semantic</div>
+          <div class="hierarchy-col-desc">Role-based aliases. Always use these in components — never reference primitives directly.</div>
+          <div class="hierarchy-token-row">
+            <span class="hierarchy-token-name">--color-text-brand</span>
+            <span class="hierarchy-token-val">var(--color-brand-600)</span>
+          </div>
+          <div class="hierarchy-token-row">
+            <span class="hierarchy-token-name">--color-bg-brand</span>
+            <span class="hierarchy-token-val">var(--color-brand-50)</span>
+          </div>
+          <div class="hierarchy-token-row">
+            <span class="hierarchy-token-name">--color-border-default</span>
+            <span class="hierarchy-token-val">var(--color-gray-200)</span>
+          </div>
+        </div>
+
+        <div class="hierarchy-arrow">&rarr;</div>
+
+        <!-- Column 3 -->
+        <div class="hierarchy-col">
+          <div class="hierarchy-col-title">03</div>
+          <div class="hierarchy-col-heading">Components</div>
+          <div class="hierarchy-col-desc">How tokens are consumed. Changing a primitive updates everything that references it.</div>
+          <div class="hierarchy-token-row">
+            <span class="hierarchy-token-name">.nav-item.active</span>
+            <span class="hierarchy-token-val">color: var(--color-text-brand)</span>
+          </div>
+          <div class="hierarchy-token-row">
+            <span class="hierarchy-token-name">.panel</span>
+            <span class="hierarchy-token-val">border: var(--border-default)</span>
+          </div>
+          <div class="hierarchy-token-row">
+            <span class="hierarchy-token-name">.btn-primary</span>
+            <span class="hierarchy-token-val">bg: var(--color-brand-500)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hierarchy-callout">
+        <strong>Why three layers?</strong> Primitives establish the palette. Semantics encode intent ("this is a brand background") so any component using it is automatically updated when the brand color changes. Components consume semantics — never primitives — so the system stays coherent under theme changes.
+      </div>
+    </section>
+
+    <!-- ── 2. Colors ── -->
+    <section class="doc-section" id="colors">
+      <h2 class="section-heading">Colors</h2>
+
+      <!-- Brand palette -->
+      <div class="subsection-heading">Brand — Primary Blue</div>
+      <div class="swatch-row">
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-brand-50);"></div>
+          <div class="swatch-label">--color-brand-50<br/>#EEF2FF</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-brand-100);"></div>
+          <div class="swatch-label">--color-brand-100<br/>#D0DBFF</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-brand-200);"></div>
+          <div class="swatch-label">--color-brand-200<br/>#A3B8FF</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-brand-300);"></div>
+          <div class="swatch-label">--color-brand-300<br/>#7C9EFF</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-brand-400);"></div>
+          <div class="swatch-label">--color-brand-400<br/>#4B78F5</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-brand-500);"></div>
+          <div class="swatch-label">--color-brand-500<br/>#1A56DB</div>
+          <div class="swatch-badge">Primary</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-brand-600);"></div>
+          <div class="swatch-label">--color-brand-600<br/>#1343B8</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-brand-700);"></div>
+          <div class="swatch-label">--color-brand-700<br/>#0E3290</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-brand-800);"></div>
+          <div class="swatch-label">--color-brand-800<br/>#092370</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-brand-900);"></div>
+          <div class="swatch-label">--color-brand-900<br/>#051550</div>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="subsection-heading">Success</div>
+      <div class="swatch-row">
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-success-50);"></div>
+          <div class="swatch-label">--color-success-50<br/>#ECFDF5</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-success-100);"></div>
+          <div class="swatch-label">--color-success-100<br/>#A7F3D0</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-success-500);"></div>
+          <div class="swatch-label">--color-success-500<br/>#059669</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-success-600);"></div>
+          <div class="swatch-label">--color-success-600<br/>#047857</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-success-green);"></div>
+          <div class="swatch-label">--color-success-green<br/>#10B981</div>
+          <div class="swatch-badge">Progress</div>
+        </div>
+      </div>
+
+      <!-- Warning -->
+      <div class="subsection-heading">Warning</div>
+      <div class="swatch-row">
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-warning-50);"></div>
+          <div class="swatch-label">--color-warning-50<br/>#FFFBEB</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-warning-100);"></div>
+          <div class="swatch-label">--color-warning-100<br/>#FDE68A</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-warning-500);"></div>
+          <div class="swatch-label">--color-warning-500<br/>#D97706</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-warning-600);"></div>
+          <div class="swatch-label">--color-warning-600<br/>#B45309</div>
+        </div>
+      </div>
+
+      <!-- Danger -->
+      <div class="subsection-heading">Danger</div>
+      <div class="swatch-row">
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-danger-50);"></div>
+          <div class="swatch-label">--color-danger-50<br/>#FEF2F2</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-danger-100);"></div>
+          <div class="swatch-label">--color-danger-100<br/>#FECACA</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-danger-400);"></div>
+          <div class="swatch-label">--color-danger-400<br/>#F87171</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-danger-500);"></div>
+          <div class="swatch-label">--color-danger-500<br/>#EF4444</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-danger-600);"></div>
+          <div class="swatch-label">--color-danger-600<br/>#DC2626</div>
+        </div>
+      </div>
+
+      <!-- Neutrals -->
+      <div class="subsection-heading">Neutrals — Gray Scale</div>
+      <div class="swatch-row">
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-white); border: 1px solid var(--color-gray-200);"></div>
+          <div class="swatch-label">--color-white<br/>#FFFFFF</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-gray-50); border: 1px solid var(--color-gray-200);"></div>
+          <div class="swatch-label">--color-gray-50<br/>#F8FAFC</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-gray-100);"></div>
+          <div class="swatch-label">--color-gray-100<br/>#F1F5F9</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-gray-200);"></div>
+          <div class="swatch-label">--color-gray-200<br/>#E2E8F0</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-gray-300);"></div>
+          <div class="swatch-label">--color-gray-300<br/>#CBD5E1</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-gray-400);"></div>
+          <div class="swatch-label">--color-gray-400<br/>#94A3B8</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-gray-500);"></div>
+          <div class="swatch-label">--color-gray-500<br/>#64748B</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-gray-600);"></div>
+          <div class="swatch-label">--color-gray-600<br/>#475569</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-gray-700);"></div>
+          <div class="swatch-label">--color-gray-700<br/>#334155</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-gray-800);"></div>
+          <div class="swatch-label">--color-gray-800<br/>#1E293B</div>
+        </div>
+        <div class="swatch-item">
+          <div class="swatch-box" style="background:var(--color-gray-900);"></div>
+          <div class="swatch-label">--color-gray-900<br/>#0A1929</div>
+        </div>
+      </div>
+
+      <!-- Semantic aliases -->
+      <div class="subsection-heading">Semantic Aliases</div>
+      <div class="alias-grid">
+        <!-- Text -->
+        <div class="alias-col">
+          <div class="alias-col-header">Text</div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#0A1929;"></div>
+            <span class="alias-name">--color-text-primary</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">gray-900</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#64748B;"></div>
+            <span class="alias-name">--color-text-secondary</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">gray-500</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#94A3B8;"></div>
+            <span class="alias-name">--color-text-muted</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">gray-400</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#FFFFFF; border: 1px solid var(--color-gray-200);"></div>
+            <span class="alias-name">--color-text-inverse</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">white</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#1343B8;"></div>
+            <span class="alias-name">--color-text-brand</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">brand-600</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#047857;"></div>
+            <span class="alias-name">--color-text-success</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">success-600</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#B45309;"></div>
+            <span class="alias-name">--color-text-warning</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">warning-600</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#DC2626;"></div>
+            <span class="alias-name">--color-text-danger</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">danger-600</span>
+          </div>
+        </div>
+
+        <!-- Border -->
+        <div class="alias-col">
+          <div class="alias-col-header">Border</div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#E2E8F0;"></div>
+            <span class="alias-name">--color-border-default</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">gray-200</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#F1F5F9; border: 1px solid #E2E8F0;"></div>
+            <span class="alias-name">--color-border-subtle</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">gray-100</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#CBD5E1;"></div>
+            <span class="alias-name">--color-border-strong</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">gray-300</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#1A56DB;"></div>
+            <span class="alias-name">--color-border-brand</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">brand-500</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#059669;"></div>
+            <span class="alias-name">--color-border-success</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">success-500</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#D97706;"></div>
+            <span class="alias-name">--color-border-warning</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">warning-500</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#EF4444;"></div>
+            <span class="alias-name">--color-border-danger</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">danger-500</span>
+          </div>
+        </div>
+
+        <!-- Background -->
+        <div class="alias-col">
+          <div class="alias-col-header">Background</div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#F8FAFC; border: 1px solid var(--color-gray-200);"></div>
+            <span class="alias-name">--color-bg-page</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">gray-50</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#FFFFFF; border: 1px solid var(--color-gray-200);"></div>
+            <span class="alias-name">--color-bg-surface</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">white</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#F1F5F9;"></div>
+            <span class="alias-name">--color-bg-subtle</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">gray-100</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#EEF2FF;"></div>
+            <span class="alias-name">--color-bg-brand</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">brand-50</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#ECFDF5;"></div>
+            <span class="alias-name">--color-bg-success</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">success-50</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#FFFBEB;"></div>
+            <span class="alias-name">--color-bg-warning</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">warning-50</span>
+          </div>
+          <div class="alias-row">
+            <div class="alias-circle" style="background:#FEF2F2;"></div>
+            <span class="alias-name">--color-bg-danger</span>
+            <span class="alias-arrow">&rarr;</span>
+            <span class="alias-ref">danger-50</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gradients -->
+      <div class="subsection-heading">Gradients</div>
+      <div class="gradient-row">
+        <div class="gradient-card">
+          <div class="gradient-box" style="background:var(--gradient-brand);"></div>
+          <div class="gradient-name">--gradient-brand</div>
+          <div class="gradient-desc">Primary action gradient (payment card, hero elements)</div>
+        </div>
+        <div class="gradient-card">
+          <div class="gradient-box" style="background:var(--gradient-dark);"></div>
+          <div class="gradient-name">--gradient-dark</div>
+          <div class="gradient-desc">Dark surface gradient (sidebar, dark overlays)</div>
+        </div>
+        <div class="gradient-card">
+          <div class="gradient-box" style="background:var(--gradient-progress);"></div>
+          <div class="gradient-name">--gradient-progress</div>
+          <div class="gradient-desc">Progress bar fill gradient</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 3. Typography ── -->
+    <section class="doc-section" id="typography">
+      <h2 class="section-heading">Typography</h2>
+
+      <!-- Font families -->
+      <div class="subsection-heading">Font Families</div>
+      <div class="font-cards">
+        <div class="font-card" style="max-width: 560px;">
+          <div class="font-card-aa" style="font-family:var(--font-sans);">Aa</div>
+          <div class="font-card-token">--font-heading &nbsp;/&nbsp; --font-sans &nbsp;/&nbsp; --font-mono</div>
+          <div class="font-card-stack">'Inter', system-ui, -apple-system, sans-serif</div>
+          <div class="font-card-use">Inter is the single typeface for all roles — headings, body, labels, financial numbers, and documentation tokens.</div>
+          <div style="margin-top: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3);">
+            <div>
+              <span style="font-family:var(--font-sans); font-size:var(--text-base); font-weight:var(--weight-regular); color:var(--color-text-muted); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:var(--tracking-wider); display:block; margin-bottom:var(--space-1);">Regular 400</span>
+              <span style="font-family:var(--font-sans); font-size:var(--text-lg); font-weight:400; color:var(--color-text-primary);">The quick brown fox jumps over the lazy dog</span>
+            </div>
+            <div>
+              <span style="font-family:var(--font-sans); font-size:var(--text-xs); font-weight:var(--weight-regular); color:var(--color-text-muted); text-transform:uppercase; letter-spacing:var(--tracking-wider); display:block; margin-bottom:var(--space-1);">Medium 500</span>
+              <span style="font-family:var(--font-sans); font-size:var(--text-lg); font-weight:500; color:var(--color-text-primary);">The quick brown fox jumps over the lazy dog</span>
+            </div>
+            <div>
+              <span style="font-family:var(--font-sans); font-size:var(--text-xs); font-weight:var(--weight-regular); color:var(--color-text-muted); text-transform:uppercase; letter-spacing:var(--tracking-wider); display:block; margin-bottom:var(--space-1);">SemiBold 600</span>
+              <span style="font-family:var(--font-sans); font-size:var(--text-lg); font-weight:600; color:var(--color-text-primary);">The quick brown fox jumps over the lazy dog</span>
+            </div>
+            <div>
+              <span style="font-family:var(--font-sans); font-size:var(--text-xs); font-weight:var(--weight-regular); color:var(--color-text-muted); text-transform:uppercase; letter-spacing:var(--tracking-wider); display:block; margin-bottom:var(--space-1);">Bold 700</span>
+              <span style="font-family:var(--font-sans); font-size:var(--text-lg); font-weight:700; color:var(--color-text-primary);">The quick brown fox jumps over the lazy dog</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Type scale -->
+      <div class="subsection-heading">Type Scale</div>
+      <table class="type-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Size</th>
+            <th>Weight</th>
+            <th>Leading</th>
+            <th>Figma Role</th>
+            <th>Preview</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cell-mono">--text-2xs</td>
+            <td class="cell-muted">10px</td>
+            <td class="cell-muted">700</td>
+            <td class="cell-muted">1.2</td>
+            <td class="cell-muted">label/2xs</td>
+            <td class="cell-preview" style="font-size:var(--text-2xs); font-weight:var(--weight-bold); line-height:var(--leading-tight);">The quick brown fox</td>
+          </tr>
+          <tr>
+            <td class="cell-mono">--text-xs</td>
+            <td class="cell-muted">12px</td>
+            <td class="cell-muted">700</td>
+            <td class="cell-muted">1.2</td>
+            <td class="cell-muted">label/xs</td>
+            <td class="cell-preview" style="font-size:var(--text-xs); font-weight:var(--weight-bold); line-height:var(--leading-tight);">The quick brown fox</td>
+          </tr>
+          <tr>
+            <td class="cell-mono">--text-sm</td>
+            <td class="cell-muted">12px</td>
+            <td class="cell-muted">400</td>
+            <td class="cell-muted">1.6</td>
+            <td class="cell-muted">body/sm</td>
+            <td class="cell-preview" style="font-size:var(--text-sm); font-weight:var(--weight-regular); line-height:var(--leading-relaxed);">The quick brown fox</td>
+          </tr>
+          <tr>
+            <td class="cell-mono">--text-base</td>
+            <td class="cell-muted">14px</td>
+            <td class="cell-muted">400</td>
+            <td class="cell-muted">1.5</td>
+            <td class="cell-muted">body/base</td>
+            <td class="cell-preview" style="font-size:var(--text-base); font-weight:var(--weight-regular); line-height:var(--leading-normal);">The quick brown fox</td>
+          </tr>
+          <tr>
+            <td class="cell-mono">--text-lg</td>
+            <td class="cell-muted">16px</td>
+            <td class="cell-muted">500</td>
+            <td class="cell-muted">1.5</td>
+            <td class="cell-muted">body/lg</td>
+            <td class="cell-preview" style="font-size:var(--text-lg); font-weight:var(--weight-medium); line-height:var(--leading-normal);">The quick brown fox</td>
+          </tr>
+          <tr>
+            <td class="cell-mono">--text-xl</td>
+            <td class="cell-muted">18px</td>
+            <td class="cell-muted">600</td>
+            <td class="cell-muted">1.4</td>
+            <td class="cell-muted">heading/xl</td>
+            <td class="cell-preview" style="font-size:var(--text-xl); font-weight:var(--weight-semibold); line-height:var(--leading-snug);">The quick brown fox</td>
+          </tr>
+          <tr>
+            <td class="cell-mono">--text-2xl</td>
+            <td class="cell-muted">20px</td>
+            <td class="cell-muted">600</td>
+            <td class="cell-muted">1.4</td>
+            <td class="cell-muted">heading/2xl</td>
+            <td class="cell-preview" style="font-size:var(--text-2xl); font-weight:var(--weight-semibold); line-height:var(--leading-snug);">The quick brown fox</td>
+          </tr>
+          <tr>
+            <td class="cell-mono">--text-3xl</td>
+            <td class="cell-muted">24px</td>
+            <td class="cell-muted">600</td>
+            <td class="cell-muted">1.2</td>
+            <td class="cell-muted">heading/3xl</td>
+            <td class="cell-preview" style="font-size:var(--text-3xl); font-weight:var(--weight-semibold); line-height:var(--leading-tight);">The quick brown fox</td>
+          </tr>
+          <tr>
+            <td class="cell-mono">--text-4xl</td>
+            <td class="cell-muted">32px</td>
+            <td class="cell-muted">700</td>
+            <td class="cell-muted">1.2</td>
+            <td class="cell-muted">display/4xl</td>
+            <td class="cell-preview" style="font-size:var(--text-4xl); font-weight:var(--weight-bold); line-height:var(--leading-tight);">The quick brown fox</td>
+          </tr>
+          <tr>
+            <td class="cell-mono">--text-5xl</td>
+            <td class="cell-muted">38px</td>
+            <td class="cell-muted">700</td>
+            <td class="cell-muted">1.2</td>
+            <td class="cell-muted">display/5xl</td>
+            <td class="cell-preview" style="font-size:var(--text-5xl); font-weight:var(--weight-bold); line-height:var(--leading-tight);">The quick brown fox</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Font weights -->
+      <div class="subsection-heading">Font Weights</div>
+      <div class="weight-cards">
+        <div class="weight-card">
+          <div class="weight-preview" style="font-weight:var(--weight-regular);">Regular Text</div>
+          <div class="weight-token">--weight-regular</div>
+          <div class="weight-value">400</div>
+        </div>
+        <div class="weight-card">
+          <div class="weight-preview" style="font-weight:var(--weight-medium);">Medium Text</div>
+          <div class="weight-token">--weight-medium</div>
+          <div class="weight-value">500</div>
+        </div>
+        <div class="weight-card">
+          <div class="weight-preview" style="font-weight:var(--weight-semibold);">Semibold Text</div>
+          <div class="weight-token">--weight-semibold</div>
+          <div class="weight-value">600</div>
+        </div>
+        <div class="weight-card">
+          <div class="weight-preview" style="font-weight:var(--weight-bold);">Bold Text</div>
+          <div class="weight-token">--weight-bold</div>
+          <div class="weight-value">700</div>
+        </div>
+      </div>
+
+      <!-- Leading & Tracking -->
+      <div class="subsection-heading">Line Height (Leading)</div>
+      <div class="leading-grid">
+        <div class="leading-card">
+          <div class="leading-token">--leading-tight</div>
+          <div class="leading-value">1.2</div>
+          <div class="leading-sample" style="line-height:1.2;">Neuron gives you clarity on your student loans.<br/>Track payments in real time.</div>
+        </div>
+        <div class="leading-card">
+          <div class="leading-token">--leading-snug</div>
+          <div class="leading-value">1.4</div>
+          <div class="leading-sample" style="line-height:1.4;">Neuron gives you clarity on your student loans.<br/>Track payments in real time.</div>
+        </div>
+        <div class="leading-card">
+          <div class="leading-token">--leading-normal</div>
+          <div class="leading-value">1.5</div>
+          <div class="leading-sample" style="line-height:1.5;">Neuron gives you clarity on your student loans.<br/>Track payments in real time.</div>
+        </div>
+        <div class="leading-card">
+          <div class="leading-token">--leading-relaxed</div>
+          <div class="leading-value">1.6</div>
+          <div class="leading-sample" style="line-height:1.6;">Neuron gives you clarity on your student loans.<br/>Track payments in real time.</div>
+        </div>
+      </div>
+
+      <div class="subsection-heading">Letter Spacing (Tracking)</div>
+      <div class="leading-grid">
+        <div class="tracking-card">
+          <div class="tracking-token">--tracking-tight</div>
+          <div class="tracking-value">-0.5px</div>
+          <div class="tracking-sample" style="letter-spacing:-0.5px;">Neuron Portal</div>
+        </div>
+        <div class="tracking-card">
+          <div class="tracking-token">--tracking-normal</div>
+          <div class="tracking-value">0</div>
+          <div class="tracking-sample" style="letter-spacing:0;">Neuron Portal</div>
+        </div>
+        <div class="tracking-card">
+          <div class="tracking-token">--tracking-wide</div>
+          <div class="tracking-value">0.04em</div>
+          <div class="tracking-sample" style="letter-spacing:0.04em;">Neuron Portal</div>
+        </div>
+        <div class="tracking-card">
+          <div class="tracking-token">--tracking-wider</div>
+          <div class="tracking-value">0.07em</div>
+          <div class="tracking-sample" style="letter-spacing:0.07em; text-transform:uppercase; font-size:var(--text-xs);">Nav Label</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 4. Spacing ── -->
+    <section class="doc-section" id="spacing">
+      <h2 class="section-heading">Spacing</h2>
+      <p style="font-size:var(--text-sm); color:var(--color-text-secondary); margin-bottom:var(--space-6); line-height:var(--leading-relaxed);">All spacing tokens are multiples of 4px. The system uses an 8px base grid with 4px half-units. Never use spacing values that fall outside this grid.</p>
+      <div class="spacing-row">
+        <div class="spacing-item">
+          <div class="spacing-bar" style="height:4px;"></div>
+          <div class="spacing-name">--space-1</div>
+          <div class="spacing-px">4px</div>
+        </div>
+        <div class="spacing-item">
+          <div class="spacing-bar" style="height:8px;"></div>
+          <div class="spacing-name">--space-2</div>
+          <div class="spacing-px">8px</div>
+        </div>
+        <div class="spacing-item">
+          <div class="spacing-bar" style="height:12px;"></div>
+          <div class="spacing-name">--space-3</div>
+          <div class="spacing-px">12px</div>
+        </div>
+        <div class="spacing-item">
+          <div class="spacing-bar" style="height:16px;"></div>
+          <div class="spacing-name">--space-4</div>
+          <div class="spacing-px">16px</div>
+        </div>
+        <div class="spacing-item">
+          <div class="spacing-bar" style="height:20px;"></div>
+          <div class="spacing-name">--space-5</div>
+          <div class="spacing-px">20px</div>
+        </div>
+        <div class="spacing-item">
+          <div class="spacing-bar" style="height:24px;"></div>
+          <div class="spacing-name">--space-6</div>
+          <div class="spacing-px">24px</div>
+        </div>
+        <div class="spacing-item">
+          <div class="spacing-bar" style="height:28px;"></div>
+          <div class="spacing-name">--space-7</div>
+          <div class="spacing-px">28px</div>
+        </div>
+        <div class="spacing-item">
+          <div class="spacing-bar" style="height:32px;"></div>
+          <div class="spacing-name">--space-8</div>
+          <div class="spacing-px">32px</div>
+        </div>
+        <div class="spacing-item">
+          <div class="spacing-bar" style="height:36px;"></div>
+          <div class="spacing-name">--space-9</div>
+          <div class="spacing-px">36px</div>
+        </div>
+        <div class="spacing-item">
+          <div class="spacing-bar" style="height:40px;"></div>
+          <div class="spacing-name">--space-10</div>
+          <div class="spacing-px">40px</div>
+        </div>
+        <div class="spacing-item">
+          <div class="spacing-bar" style="height:48px;"></div>
+          <div class="spacing-name">--space-12</div>
+          <div class="spacing-px">48px</div>
+        </div>
+        <div class="spacing-item">
+          <div class="spacing-bar" style="height:64px;"></div>
+          <div class="spacing-name">--space-16</div>
+          <div class="spacing-px">64px</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5. Radius ── -->
+    <section class="doc-section" id="radius">
+      <h2 class="section-heading">Border Radius</h2>
+      <div class="radius-row">
+        <div class="radius-item">
+          <div class="radius-box" style="border-radius:var(--radius-xs);"></div>
+          <div class="radius-name">--radius-xs</div>
+          <div class="radius-value">4px</div>
+        </div>
+        <div class="radius-item">
+          <div class="radius-box" style="border-radius:var(--radius-sm);"></div>
+          <div class="radius-name">--radius-sm</div>
+          <div class="radius-value">6px</div>
+        </div>
+        <div class="radius-item">
+          <div class="radius-box" style="border-radius:var(--radius-md);"></div>
+          <div class="radius-name">--radius-md</div>
+          <div class="radius-value">10px</div>
+        </div>
+        <div class="radius-item">
+          <div class="radius-box" style="border-radius:var(--radius-lg);"></div>
+          <div class="radius-name">--radius-lg</div>
+          <div class="radius-value">14px</div>
+        </div>
+        <div class="radius-item">
+          <div class="radius-box" style="border-radius:var(--radius-xl);"></div>
+          <div class="radius-name">--radius-xl</div>
+          <div class="radius-value">18px</div>
+        </div>
+        <div class="radius-item">
+          <div class="radius-box" style="border-radius:var(--radius-full);"></div>
+          <div class="radius-name">--radius-full</div>
+          <div class="radius-value">9999px</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 6. Shadows ── -->
+    <section class="doc-section" id="shadows">
+      <h2 class="section-heading">Shadows</h2>
+      <div class="shadow-row">
+        <div class="shadow-card-wrap">
+          <div class="shadow-card" style="box-shadow:var(--shadow-xs);"></div>
+          <div class="shadow-name">--shadow-xs</div>
+          <div class="shadow-val">0 1px 2px rgba(0,0,0,0.05)</div>
+        </div>
+        <div class="shadow-card-wrap">
+          <div class="shadow-card" style="box-shadow:var(--shadow-sm);"></div>
+          <div class="shadow-name">--shadow-sm</div>
+          <div class="shadow-val">0 2px 6px rgba(0,0,0,0.06)</div>
+        </div>
+        <div class="shadow-card-wrap">
+          <div class="shadow-card" style="box-shadow:var(--shadow-md);"></div>
+          <div class="shadow-name">--shadow-md</div>
+          <div class="shadow-val">0 4px 12px rgba(0,0,0,0.08)</div>
+        </div>
+        <div class="shadow-card-wrap">
+          <div class="shadow-card" style="box-shadow:var(--shadow-lg);"></div>
+          <div class="shadow-name">--shadow-lg</div>
+          <div class="shadow-val">0 8px 24px rgba(0,0,0,0.12)</div>
+        </div>
+        <div class="shadow-card-wrap">
+          <div class="shadow-card" style="box-shadow:var(--shadow-xl);"></div>
+          <div class="shadow-name">--shadow-xl</div>
+          <div class="shadow-val">0 16px 40px rgba(0,0,0,0.16)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 7. Borders ── -->
+    <section class="doc-section" id="borders">
+      <h2 class="section-heading">Borders</h2>
+
+      <div class="border-cards">
+        <div class="border-item">
+          <div class="border-demo" style="border:var(--border-subtle);">
+            <span style="font-size:var(--text-sm); color:var(--color-text-muted);">border-subtle</span>
+          </div>
+          <div class="border-info">
+            <div class="border-token">--border-subtle</div>
+            <div class="border-resolved">1px solid var(--color-gray-100)</div>
+          </div>
+        </div>
+        <div class="border-item">
+          <div class="border-demo" style="border:var(--border-default);">
+            <span style="font-size:var(--text-sm); color:var(--color-text-muted);">border-default</span>
+          </div>
+          <div class="border-info">
+            <div class="border-token">--border-default</div>
+            <div class="border-resolved">1px solid var(--color-gray-200)</div>
+          </div>
+        </div>
+        <div class="border-item">
+          <div class="border-demo" style="border:var(--border-strong);">
+            <span style="font-size:var(--text-sm); color:var(--color-text-muted);">border-strong</span>
+          </div>
+          <div class="border-info">
+            <div class="border-token">--border-strong</div>
+            <div class="border-resolved">1px solid var(--color-gray-300)</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-6); padding:var(--space-4); background:var(--color-bg-subtle); border-radius:var(--radius-sm);">
+        <span style="font-size:var(--text-sm); color:var(--color-text-secondary);">Gradients are documented in the <a href="#colors" style="color:var(--color-text-brand); font-weight:var(--weight-medium);">Colors section</a> above.</span>
+      </div>
+    </section>
+
+    <!-- ── 8. Layout Tokens ── -->
+    <section class="doc-section" id="layout">
+      <h2 class="section-heading">Layout Tokens</h2>
+      <p style="font-size:var(--text-sm); color:var(--color-text-secondary); margin-bottom:var(--space-6); line-height:var(--leading-relaxed);">Fixed structural values that define the application shell. These should only be changed intentionally — they affect the global layout stack and z-index order.</p>
+      <table class="layout-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Value</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-token"><span class="token">--sidebar-width</span></td>
+            <td class="col-value">224px</td>
+            <td class="col-desc">Fixed sidebar navigation width</td>
+          </tr>
+          <tr>
+            <td class="col-token"><span class="token">--topbar-height</span></td>
+            <td class="col-value">64px</td>
+            <td class="col-desc">Page-level topbar height</td>
+          </tr>
+          <tr>
+            <td class="col-token"><span class="token">--banner-height</span></td>
+            <td class="col-value">40px</td>
+            <td class="col-desc">Alert banner height</td>
+          </tr>
+          <tr>
+            <td class="col-token"><span class="token">--global-topbar-height</span></td>
+            <td class="col-value">56px</td>
+            <td class="col-desc">Global app header height</td>
+          </tr>
+          <tr>
+            <td class="col-token"><span class="token">--content-gap</span></td>
+            <td class="col-value">var(--space-4)</td>
+            <td class="col-desc">Gap between content cards / stat grid items (16px)</td>
+          </tr>
+          <tr>
+            <td class="col-token"><span class="token">--grid-unit</span></td>
+            <td class="col-value">8px</td>
+            <td class="col-desc">Base grid unit (all spacing is multiples)</td>
+          </tr>
+          <tr>
+            <td class="col-token"><span class="token">--grid-gutter</span></td>
+            <td class="col-value">24px</td>
+            <td class="col-desc">Column gap in the 12-column content grid</td>
+          </tr>
+          <tr>
+            <td class="col-token"><span class="token">--grid-margin</span></td>
+            <td class="col-value">32px</td>
+            <td class="col-desc">Content area edge padding</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <script>
+    (function() {
+      var sections = document.querySelectorAll('.doc-section');
+      var links = document.querySelectorAll('.sidebar-link');
+
+      function getActive() {
+        var scrollY = window.scrollY + 80;
+        var active = null;
+        sections.forEach(function(sec) {
+          if (sec.offsetTop <= scrollY) active = sec.id;
+        });
+        return active;
+      }
+
+      function updateActive() {
+        var id = getActive();
+        links.forEach(function(link) {
+          var href = link.getAttribute('href').replace('#', '');
+          if (href === id) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActive, { passive: true });
+      updateActive();
+    })();
+  </script>
+
+</body>
+</html>

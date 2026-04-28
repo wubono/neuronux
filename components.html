@@ -1,0 +1,2384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neuron — Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+  <style>
+    :root {
+      /* ── Brand ── */
+      --color-brand-50:  #EEF2FF;
+      --color-brand-100: #D0DBFF;
+      --color-brand-200: #A3B8FF;
+      --color-brand-300: #7C9EFF;
+      --color-brand-400: #4B78F5;
+      --color-brand-500: #1A56DB;
+      --color-brand-600: #1343B8;
+      --color-brand-700: #0E3290;
+      --color-brand-800: #092370;
+      --color-brand-900: #051550;
+
+      /* ── Semantic: Success / Teal ── */
+      --color-success-50:  #ECFDF5;
+      --color-success-100: #A7F3D0;
+      --color-success-500: #059669;
+      --color-success-600: #047857;
+      --color-success-green: #10B981;
+
+      /* ── Semantic: Warning / Amber ── */
+      --color-warning-50:  #FFFBEB;
+      --color-warning-100: #FDE68A;
+      --color-warning-500: #D97706;
+      --color-warning-600: #B45309;
+
+      /* ── Semantic: Danger / Red ── */
+      --color-danger-50:  #FEF2F2;
+      --color-danger-100: #FECACA;
+      --color-danger-400: #F87171;
+      --color-danger-500: #EF4444;
+      --color-danger-600: #DC2626;
+
+      /* ── Neutrals / Surface ── */
+      --color-white:      #FFFFFF;
+      --color-surface:    #FFFFFF;
+      --color-page-bg:    #F8FAFC;
+      --color-gray-50:  #F8FAFC;
+      --color-gray-100: #F1F5F9;
+      --color-gray-200: #E2E8F0;
+      --color-gray-300: #CBD5E1;
+      --color-gray-400: #94A3B8;
+      --color-gray-500: #64748B;
+      --color-gray-600: #475569;
+      --color-gray-700: #334155;
+      --color-gray-800: #1E293B;
+      --color-gray-900: #0A1929;
+
+      /* ── Text Aliases ── */
+      --color-text-primary:   var(--color-gray-900);
+      --color-text-secondary: var(--color-gray-500);
+      --color-text-muted:     var(--color-gray-400);
+      --color-text-inverse:   var(--color-white);
+      --color-text-brand:     var(--color-brand-600);
+      --color-text-success:   var(--color-success-600);
+      --color-text-warning:   var(--color-warning-600);
+      --color-text-danger:    var(--color-danger-600);
+
+      /* ── Border Aliases ── */
+      --color-border-default: var(--color-gray-200);
+      --color-border-subtle:  var(--color-gray-100);
+      --color-border-strong:  var(--color-gray-300);
+      --color-border-brand:   var(--color-brand-500);
+      --color-border-success: var(--color-success-500);
+      --color-border-warning: var(--color-warning-500);
+      --color-border-danger:  var(--color-danger-500);
+
+      /* ── Background Aliases ── */
+      --color-bg-page:    var(--color-page-bg);
+      --color-bg-surface: var(--color-surface);
+      --color-bg-subtle:  var(--color-gray-100);
+      --color-bg-brand:   var(--color-brand-50);
+      --color-bg-success: var(--color-success-50);
+      --color-bg-warning: var(--color-warning-50);
+      --color-bg-danger:  var(--color-danger-50);
+
+      /* ── Gradients ── */
+      --gradient-brand:    linear-gradient(29.56deg, var(--color-brand-500) 13.4%, #2563EB 50%, #1D4ED8 86.6%);
+      --gradient-dark:     linear-gradient(135deg, var(--color-gray-900) 0%, var(--color-gray-800) 100%);
+      --gradient-progress: linear-gradient(90deg, var(--color-brand-500), var(--color-brand-200));
+
+      /* ── Typography ── */
+      --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono:    'Inter', system-ui, -apple-system, sans-serif;
+
+      --text-2xs:  10px;
+      --text-xs:   12px;
+      --text-sm:   12px;
+      --text-base: 14px;
+      --text-lg:   16px;
+      --text-xl:   18px;
+      --text-2xl:  20px;
+      --text-3xl:  24px;
+      --text-4xl:  32px;
+      --text-5xl:  38px;
+
+      --weight-regular:  400;
+      --weight-medium:   500;
+      --weight-semibold: 600;
+      --weight-bold:     700;
+
+      --leading-tight:   1.2;
+      --leading-snug:    1.4;
+      --leading-normal:  1.5;
+      --leading-relaxed: 1.6;
+
+      --tracking-tight:  -0.5px;
+      --tracking-normal: 0;
+      --tracking-wide:   0.04em;
+      --tracking-wider:  0.07em;
+
+      /* ── Spacing ── */
+      --space-1:  4px;
+      --space-2:  8px;
+      --space-3:  12px;
+      --space-4:  16px;
+      --space-5:  20px;
+      --space-6:  24px;
+      --space-7:  28px;
+      --space-8:  32px;
+      --space-9:  36px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+
+      /* ── Radius ── */
+      --radius-xs:   4px;
+      --radius-sm:   6px;
+      --radius-md:   10px;
+      --radius-lg:   14px;
+      --radius-xl:   18px;
+      --radius-full: 9999px;
+
+      /* ── Shadows ── */
+      --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-sm: 0 2px 6px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+      --shadow-xl: 0 16px 40px rgba(0,0,0,0.16);
+
+      /* ── Borders ── */
+      --border-default: 1px solid var(--color-border-default);
+      --border-subtle:  1px solid var(--color-border-subtle);
+      --border-strong:  1px solid var(--color-border-strong);
+
+      /* ── Layout ── */
+      --sidebar-width:        224px;
+      --topbar-height:        64px;
+      --banner-height:        40px;
+      --global-topbar-height: 56px;
+      --content-gap:          var(--space-4);
+
+      /* ── 8px Grid System ── */
+      --grid-unit:    8px;
+      --grid-gutter:  24px;   /* 3u — column gap */
+      --grid-margin:  32px;   /* 4u — content edge padding */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      color: var(--color-text-primary);
+      background: var(--color-bg-page);
+      line-height: var(--leading-normal);
+      min-width: 1280px;
+    }
+
+    /* ── Page Header ── */
+    .page-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--global-topbar-height);
+      background: var(--color-bg-surface);
+      border-bottom: var(--border-default);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--space-8);
+    }
+
+    .wordmark {
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-brand-500);
+      letter-spacing: var(--tracking-tight);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .header-right a {
+      color: var(--color-brand-500);
+      text-decoration: none;
+      font-weight: var(--weight-medium);
+    }
+
+    .header-right a:hover { text-decoration: underline; }
+
+    .header-divider {
+      color: var(--color-text-muted);
+    }
+
+    /* ── Left Nav ── */
+    .left-nav {
+      position: fixed;
+      top: var(--global-topbar-height);
+      left: 0;
+      width: 220px;
+      height: calc(100vh - var(--global-topbar-height));
+      background: var(--color-gray-50);
+      border-right: var(--border-default);
+      padding: var(--space-6) 0;
+      overflow-y: auto;
+    }
+
+    .left-nav-label {
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      padding: var(--space-4) var(--space-4) var(--space-2);
+    }
+
+    .left-nav-item {
+      display: block;
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      cursor: pointer;
+    }
+
+    .left-nav-item:hover {
+      background: var(--color-gray-100);
+      color: var(--color-text-primary);
+    }
+
+    .left-nav-item.active {
+      border-left-color: var(--color-brand-500);
+      background: var(--color-bg-brand);
+      color: var(--color-text-brand);
+      font-weight: var(--weight-semibold);
+    }
+
+    /* ── Main Content ── */
+    .main-content {
+      margin-left: 220px;
+      padding: var(--space-12) var(--space-16);
+      max-width: 960px;
+    }
+
+    /* ── Section ── */
+    section {
+      margin-bottom: var(--space-12);
+    }
+
+    section h2 {
+      font-family: var(--font-heading);
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      border-bottom: var(--border-default);
+      padding-bottom: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    /* ── Component Block ── */
+    .comp-block {
+      margin-bottom: var(--space-8);
+    }
+
+    .comp-block h3 {
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-3);
+    }
+
+    /* ── Spec Box ── */
+    .spec-box {
+      background: var(--color-gray-50);
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+
+    .spec-desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-3);
+      line-height: var(--leading-relaxed);
+    }
+
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--text-sm);
+    }
+
+    .spec-table th {
+      background: var(--color-gray-100);
+      color: var(--color-text-muted);
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      padding: var(--space-2) var(--space-3);
+      text-align: left;
+    }
+
+    .spec-table td {
+      padding: 10px var(--space-3);
+      border-bottom: var(--border-subtle);
+      color: var(--color-text-primary);
+      vertical-align: middle;
+    }
+
+    .spec-table tr:last-child td { border-bottom: none; }
+
+    .spec-table code {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--color-text-brand);
+      background: var(--color-bg-brand);
+      padding: 2px var(--space-2);
+      border-radius: var(--radius-xs);
+    }
+
+    /* ── Demo Box ── */
+    .demo-box {
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      padding: var(--space-6);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: flex-start;
+    }
+
+    .demo-box.dark-bg {
+      background: var(--color-gray-800);
+    }
+
+    .demo-box.block {
+      display: block;
+    }
+
+    .demo-label {
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-2);
+    }
+
+    /* ── NAVIGATION COMPONENT ── */
+    .nav-item-demo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      min-width: 160px;
+    }
+
+    .nav-item-demo i { font-size: var(--text-base); }
+
+    .nav-item-demo.state-default {
+      color: var(--color-gray-400);
+      background: transparent;
+    }
+
+    .nav-item-demo.state-hover {
+      color: var(--color-gray-200);
+      background: var(--color-gray-800);
+    }
+
+    .nav-item-demo.state-active {
+      color: var(--color-text-inverse);
+      background: var(--color-brand-500);
+    }
+
+    .nav-demo-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      width: 100%;
+    }
+
+    .nav-demo-footer {
+      border-top: var(--border-subtle);
+      padding-top: var(--space-2);
+      margin-top: var(--space-2);
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      height: var(--space-10);
+      padding: var(--space-2) var(--space-5);
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--color-brand-500);
+      color: var(--color-text-inverse);
+    }
+
+    .btn-primary:hover { background: var(--color-brand-600); }
+
+    .btn-primary:disabled {
+      background: var(--color-gray-200);
+      color: var(--color-text-muted);
+      cursor: not-allowed;
+    }
+
+    .btn-ghost {
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      color: var(--color-text-primary);
+    }
+
+    .btn-ghost:hover { background: var(--color-gray-100); }
+
+    .btn-ghost-brand {
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      color: var(--color-brand-500);
+      font-weight: var(--weight-semibold);
+    }
+
+    .btn-ghost-brand:hover { background: var(--color-bg-brand); }
+
+    .btn-pay-now-disabled {
+      background: var(--color-gray-200);
+      color: var(--color-text-muted);
+      cursor: not-allowed;
+      height: var(--space-10);
+      padding: var(--space-2) var(--space-5);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .btn-custom-pay {
+      background: var(--color-brand-500);
+      border: 1px solid var(--color-brand-400);
+      color: var(--color-text-inverse);
+      height: var(--space-10);
+      padding: var(--space-2) var(--space-5);
+      border-radius: var(--radius-md);
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    /* ── BADGES ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-full);
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+    }
+
+    .badge-active   { background: var(--color-bg-brand);    color: var(--color-text-brand); }
+    .badge-paid     { background: var(--color-bg-success);  color: var(--color-text-success); }
+    .badge-pending  { background: var(--color-bg-warning);  color: var(--color-text-warning); }
+    .badge-overdue  { background: var(--color-bg-danger);   color: var(--color-text-danger); }
+    .badge-received { background: var(--color-bg-success);  color: var(--color-text-success); }
+
+    .loan-num-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--space-8);
+      height: var(--space-8);
+      border-radius: var(--radius-sm);
+      background: var(--color-bg-brand);
+      color: var(--color-text-brand);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-semibold);
+      flex-shrink: 0;
+    }
+
+    /* ── INPUTS ── */
+    .search-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: var(--space-3);
+      color: var(--color-text-muted);
+      font-size: var(--text-base);
+      pointer-events: none;
+    }
+
+    .search-input {
+      height: var(--space-10);
+      width: 340px;
+      padding: 0 var(--space-3) 0 var(--space-8);
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .search-input::placeholder { color: var(--color-text-muted); }
+
+    .search-input:focus {
+      border-color: var(--color-border-brand);
+      box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.12);
+    }
+
+    .search-input.focus-demo {
+      border-color: var(--color-border-brand);
+      box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.12);
+    }
+
+    /* ── PANELS ── */
+    .panel {
+      background: var(--color-bg-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xs);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-4) var(--space-5);
+      border-bottom: var(--border-default);
+    }
+
+    .panel-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-semibold);
+      color: var(--color-brand-900);
+    }
+
+    .panel-link {
+      font-size: var(--text-sm);
+      color: var(--color-brand-500);
+      font-weight: var(--weight-medium);
+      text-decoration: none;
+    }
+
+    .panel-link:hover { text-decoration: underline; }
+
+    .panel-body { padding: var(--space-4) var(--space-5); }
+
+    .panel-tabs {
+      display: flex;
+      gap: 0;
+      padding: 0 var(--space-5);
+      border-bottom: var(--border-default);
+    }
+
+    .panel-tab {
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .panel-tab.active {
+      color: var(--color-brand-500);
+      border-bottom-color: var(--color-brand-500);
+      font-weight: var(--weight-semibold);
+    }
+
+    /* ── PAYMENT CARD ── */
+    .payment-card {
+      background: var(--gradient-brand);
+      border-radius: var(--radius-md);
+      padding: var(--space-8);
+      width: 400px;
+      color: var(--color-text-inverse);
+    }
+
+    .payment-card-eyebrow {
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: var(--space-2);
+    }
+
+    .payment-card-amount {
+      font-family: var(--font-heading);
+      font-size: var(--text-5xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-inverse);
+      line-height: var(--leading-tight);
+      font-variant-numeric: tabular-nums;
+      margin-bottom: var(--space-2);
+    }
+
+    .payment-card-status-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-6);
+    }
+
+    .payment-card-autopay {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-sm);
+      padding: var(--space-2) var(--space-3);
+      margin-bottom: var(--space-5);
+    }
+
+    .payment-card-autopay i {
+      color: var(--color-warning-100);
+      font-size: var(--text-base);
+      flex-shrink: 0;
+    }
+
+    .payment-card-autopay-text {
+      font-size: var(--text-sm);
+      color: rgba(255, 255, 255, 0.9);
+      line-height: var(--leading-snug);
+    }
+
+    .payment-card-buttons {
+      display: flex;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .payment-card-next {
+      font-size: var(--text-sm);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ── SIMULATOR CARD ── */
+    .simulator-card {
+      background: var(--color-bg-brand);
+      border-radius: var(--radius-md);
+      padding: var(--space-6) var(--space-7);
+      width: 400px;
+    }
+
+    .simulator-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-brand-500);
+      margin-bottom: var(--space-3);
+    }
+
+    .simulator-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-2xl);
+      font-weight: var(--weight-semibold);
+      color: var(--color-gray-800);
+      margin-bottom: var(--space-2);
+      line-height: var(--leading-snug);
+    }
+
+    .simulator-body {
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: var(--leading-relaxed);
+      margin-bottom: var(--space-5);
+    }
+
+    .simulator-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .simulator-read-more {
+      font-size: var(--text-sm);
+      color: var(--color-brand-500);
+      font-weight: var(--weight-medium);
+      text-decoration: none;
+    }
+
+    .simulator-read-more:hover { text-decoration: underline; }
+
+    /* ── WELCOME CARD ── */
+    .welcome-card {
+      background: var(--color-bg-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xs);
+      padding: var(--space-6);
+      width: 100%;
+    }
+
+    .welcome-greeting {
+      font-family: var(--font-heading);
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-4);
+    }
+
+    .welcome-stats {
+      display: flex;
+      gap: var(--space-8);
+      margin-bottom: var(--space-5);
+    }
+
+    .stat-item {}
+
+    .stat-value {
+      font-family: var(--font-heading);
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-primary);
+      font-variant-numeric: tabular-nums;
+      line-height: var(--leading-tight);
+    }
+
+    .stat-label {
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-top: var(--space-1);
+    }
+
+    .progress-track {
+      height: 10px;
+      background: var(--color-gray-200);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--color-success-500);
+      border-radius: var(--radius-full);
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: var(--space-2);
+    }
+
+    .progress-meta-label {
+      font-size: var(--text-2xs);
+      color: var(--color-text-muted);
+      font-weight: var(--weight-medium);
+    }
+
+    /* ── LOAN ROWS ── */
+    .loan-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-5);
+      border-bottom: var(--border-subtle);
+    }
+
+    .loan-row:last-child { border-bottom: none; }
+
+    .loan-info { flex: 1; }
+
+    .loan-name {
+      font-size: var(--text-base);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-primary);
+    }
+
+    .loan-meta {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      margin-top: 2px;
+    }
+
+    .loan-amount {
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      font-variant-numeric: tabular-nums;
+      margin-right: var(--space-3);
+    }
+
+    /* ── ACTIVITY ITEMS ── */
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) 0;
+      border-bottom: var(--border-subtle);
+    }
+
+    .activity-item:last-child { border-bottom: none; }
+
+    .activity-icon {
+      width: var(--space-8);
+      height: var(--space-8);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-base);
+      flex-shrink: 0;
+    }
+
+    .activity-icon.pending {
+      background: var(--color-bg-warning);
+      color: var(--color-warning-500);
+    }
+
+    .activity-icon.received {
+      background: var(--color-bg-success);
+      color: var(--color-success-500);
+    }
+
+    .activity-info { flex: 1; }
+
+    .activity-date {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .activity-source {
+      font-size: var(--text-base);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-primary);
+    }
+
+    .activity-right {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-1);
+    }
+
+    .activity-amount {
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── NOTIFICATIONS ── */
+    /* ── Notification Panel ── */
+    .notif-panel-wrap {
+      width: 400px;
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .notif-panel-hd {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-4) var(--space-6);
+      border-bottom: var(--border-default);
+    }
+
+    .notif-panel-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      line-height: var(--leading-snug);
+    }
+
+    .notif-panel-count {
+      font-size: var(--text-xl);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-secondary);
+      line-height: var(--leading-snug);
+    }
+
+    .notif-section-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-2) var(--space-5);
+      background: var(--color-bg-subtle);
+      border-bottom: var(--border-default);
+    }
+
+    .notif-section-label {
+      font-size: var(--text-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+    }
+
+    .notif-mark-all {
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-brand-500);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      padding: 0;
+    }
+
+    .notif-item {
+      display: flex;
+      gap: var(--space-3);
+      padding: var(--space-4) var(--space-6);
+      border-bottom: var(--border-default);
+      background: var(--color-bg-surface);
+    }
+
+    .notif-item:last-child { border-bottom: none; }
+    .notif-item.unread { background: var(--color-bg-brand); }
+
+    .notif-avatar {
+      width: var(--space-9);
+      height: var(--space-9);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-lg);
+      flex-shrink: 0;
+      border: 1px solid transparent;
+    }
+
+    .notif-avatar.warning {
+      background: var(--color-bg-warning);
+      color: var(--color-warning-500);
+      border-color: var(--color-warning-100);
+    }
+
+    .notif-avatar.danger {
+      background: var(--color-bg-danger);
+      color: var(--color-danger-500);
+      border-color: var(--color-danger-100);
+    }
+
+    .notif-content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .notif-title-row {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+      width: 100%;
+    }
+
+    .notif-title {
+      flex: 1;
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      line-height: var(--leading-snug);
+    }
+
+    .notif-time-wrap {
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .notif-time {
+      font-size: var(--text-2xs);
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+    }
+
+    .notif-unread-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-full);
+      background: var(--color-brand-500);
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .notif-body {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--leading-relaxed);
+    }
+
+    .notif-actions {
+      display: flex;
+      gap: var(--space-3);
+      align-items: center;
+    }
+
+    .notif-action-link {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-semibold);
+      color: var(--color-brand-500);
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .notif-action-link:hover { text-decoration: underline; }
+
+    /* ── ICONS GRID ── */
+    .icon-grid {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--text-sm);
+    }
+
+    .icon-grid th {
+      background: var(--color-gray-100);
+      color: var(--color-text-muted);
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      padding: var(--space-2) var(--space-3);
+      text-align: left;
+    }
+
+    .icon-grid td {
+      padding: var(--space-3) var(--space-3);
+      border-bottom: var(--border-subtle);
+      vertical-align: middle;
+    }
+
+    .icon-grid tr:last-child td { border-bottom: none; }
+
+    .icon-grid .icon-name {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .icon-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-1);
+    }
+
+    .icon-cell i { color: var(--color-gray-700); }
+
+    .icon-size-label {
+      font-size: var(--text-2xs);
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* ── Placeholder rows ── */
+    .placeholder-row {
+      height: 36px;
+      background: var(--color-gray-100);
+      border-radius: var(--radius-xs);
+      margin-bottom: var(--space-2);
+    }
+
+    .placeholder-row:last-child { margin-bottom: 0; }
+
+    /* ── On Track badge ── */
+    .badge-on-track-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: var(--gradient-brand);
+      border-radius: var(--radius-sm);
+      padding: var(--space-2) var(--space-3);
+    }
+
+    /* ── WELCOME SECTION (v2) ── */
+    .welcome-section-demo {
+      background: var(--color-bg-surface);
+      border: var(--border-default);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-5) var(--space-8);
+      display: grid;
+      grid-template-columns: 376px 1fr;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+    }
+
+    .ws-left {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      padding-right: var(--space-8);
+    }
+
+    .ws-heading-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .ws-emoji { font-size: var(--text-2xl); line-height: 1; }
+
+    .ws-heading {
+      font-family: var(--font-heading);
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-bold);
+      color: var(--color-text-primary);
+      line-height: var(--leading-tight);
+    }
+
+    .ws-sub {
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: var(--leading-normal);
+    }
+
+    .ws-progress-labels {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      margin-top: var(--space-1);
+    }
+
+    .ws-progress-label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      font-weight: var(--weight-medium);
+    }
+
+    .ws-progress-label--muted {
+      color: var(--color-text-muted);
+      font-weight: var(--weight-regular);
+    }
+
+    .ws-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .ws-dot-paid   { background: var(--color-success-green); }
+    .ws-dot-remain { background: var(--color-gray-200); }
+
+    .ws-progress-track {
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--color-gray-200);
+      overflow: hidden;
+      margin-top: var(--space-1);
+    }
+
+    .ws-progress-fill {
+      height: 100%;
+      width: 33%;
+      background: var(--color-success-green);
+      border-radius: var(--radius-full);
+    }
+
+    .ws-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      height: 100%;
+    }
+
+    .ws-stat {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      padding: 0 var(--space-8);
+      border-left: var(--border-default);
+    }
+
+    .ws-stat:first-child {
+      border-left: none;
+      padding-left: var(--space-8);
+    }
+
+    .ws-stat-label {
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      white-space: nowrap;
+    }
+
+    .ws-stat-value {
+      font-family: var(--font-heading);
+      font-size: var(--text-4xl);
+      font-weight: var(--weight-bold);
+      font-variant-numeric: tabular-nums;
+      color: var(--color-text-primary);
+      line-height: var(--leading-tight);
+    }
+
+    .ws-stat-meta {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      white-space: nowrap;
+      line-height: var(--leading-snug);
+    }
+
+    /* ── Payment card: Autopay enabled state ── */
+    .payment-card-autopay-on {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-sm);
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.75);
+      margin-bottom: var(--space-4);
+    }
+
+    .payment-card-autopay-on i {
+      color: var(--color-success-green);
+      font-size: var(--text-lg);
+      flex-shrink: 0;
+    }
+
+    /* ── Recent Payments panel (panel-title-h2 variant) ── */
+    .panel-title-h2 {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-semibold);
+      color: var(--color-brand-900);
+      line-height: var(--leading-snug);
+      margin: 0;
+    }
+
+    .panel-title-info-icon {
+      font-size: var(--text-lg);
+      color: var(--color-brand-500);
+      flex-shrink: 0;
+    }
+
+    /* ── btn-pay-primary / btn-pay-ghost on blue bg ── */
+    .btn-pay-primary {
+      height: var(--space-10);
+      padding: 0 var(--space-5);
+      background: var(--color-gray-200);
+      color: var(--color-text-muted);
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: default;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      flex: 1;
+    }
+
+    .btn-pay-ghost {
+      height: var(--space-10);
+      padding: 0 var(--space-5);
+      background: var(--color-brand-500);
+      color: white;
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      border: 1px solid var(--color-brand-400);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: background 0.12s;
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-pay-ghost:hover { background: var(--color-brand-600); }
+  </style>
+</head>
+<body>
+
+<!-- ── PAGE HEADER ── -->
+<header class="page-header">
+  <span class="wordmark">neuron</span>
+  <div class="header-right">
+    <span>Components &middot; Library</span>
+    <span class="header-divider">&middot;</span>
+    <a href="foundation.html"><i class="ph ph-arrow-left" style="font-size:12px;"></i> Foundation</a>
+  </div>
+</header>
+
+<!-- ── LEFT NAV ── -->
+<nav class="left-nav">
+  <div class="left-nav-label">Components</div>
+  <a class="left-nav-item" href="#welcome">Welcome Section</a>
+  <a class="left-nav-item" href="#navigation">Navigation</a>
+  <a class="left-nav-item" href="#buttons">Buttons</a>
+  <a class="left-nav-item" href="#badges">Badges</a>
+  <a class="left-nav-item" href="#inputs">Inputs</a>
+  <a class="left-nav-item" href="#panels">Panels &amp; Cards</a>
+  <a class="left-nav-item" href="#loans">Loan Rows</a>
+  <a class="left-nav-item" href="#activity">Activity Items</a>
+  <a class="left-nav-item" href="#notifications">Notifications</a>
+  <a class="left-nav-item" href="#icons">Icons</a>
+</nav>
+
+<!-- ── MAIN CONTENT ── -->
+<main class="main-content">
+
+  <!-- ══════════════════════════════════════
+       0. WELCOME SECTION
+  ══════════════════════════════════════ -->
+  <section id="welcome">
+    <h2>Welcome Section</h2>
+
+    <div class="comp-block">
+      <h3>0a. Welcome Card</h3>
+
+      <div class="spec-box">
+        <p class="spec-desc">Full-width horizontal card at the top of the Home dashboard. Two-column grid: 376px left (greeting + subtitle + progress) and 1fr right (3-stat grid). No border-right on the left column. Left column uses no divider — only the stat columns use border-left.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>background</td><td><code>--color-bg-surface</code></td><td>#FFFFFF</td></tr>
+            <tr><td>border</td><td><code>--border-default</code></td><td>1px solid #E2E8F0</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-lg</code></td><td>14px</td></tr>
+            <tr><td>box-shadow</td><td><code>--shadow-sm</code></td><td>0 2px 6px rgba(0,0,0,0.06)</td></tr>
+            <tr><td>padding</td><td><code>--space-5</code> <code>--space-8</code></td><td>20px 32px</td></tr>
+            <tr><td>grid-template-columns</td><td>—</td><td>376px 1fr</td></tr>
+            <tr><td>heading font-size</td><td><code>--text-3xl</code></td><td>24px — Bold</td></tr>
+            <tr><td>subtitle color</td><td><code>--color-text-secondary</code></td><td>#64748B</td></tr>
+            <tr><td>progress track bg</td><td><code>--color-gray-200</code></td><td>#E2E8F0</td></tr>
+            <tr><td>progress fill</td><td><code>--color-success-green</code></td><td>#10B981</td></tr>
+            <tr><td>progress height</td><td>—</td><td>6px</td></tr>
+            <tr><td>stat label size</td><td><code>--text-2xs</code></td><td>10px — Bold, uppercase, tracking-wider</td></tr>
+            <tr><td>stat value size</td><td><code>--text-4xl</code></td><td>32px — Bold, tabular-nums</td></tr>
+            <tr><td>stat meta size</td><td><code>--text-sm</code></td><td>12px — color-text-muted</td></tr>
+            <tr><td>stat col border-left</td><td><code>--border-default</code></td><td>first child: none</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="demo-box block" style="padding: var(--space-6); background: var(--color-bg-page);">
+        <div class="welcome-section-demo">
+          <!-- Left: greeting + progress -->
+          <div class="ws-left">
+            <div class="ws-heading-row">
+              <span class="ws-emoji">👋</span>
+              <h1 class="ws-heading">Hey, Wojciech!</h1>
+            </div>
+            <p class="ws-sub">Here's a snapshot of your student loan portfolio.</p>
+            <div class="ws-progress-labels">
+              <span class="ws-progress-label"><span class="ws-dot ws-dot-paid"></span>$9,382 paid</span>
+              <span class="ws-progress-label ws-progress-label--muted"><span class="ws-dot ws-dot-remain"></span>$19,380 remaining</span>
+            </div>
+            <div class="ws-progress-track">
+              <div class="ws-progress-fill"></div>
+            </div>
+          </div>
+          <!-- Right: 3 stat columns -->
+          <div class="ws-stats">
+            <div class="ws-stat">
+              <span class="ws-stat-label">Outstanding Balance</span>
+              <span class="ws-stat-value">$28,762</span>
+              <span class="ws-stat-meta">across 4 loans</span>
+            </div>
+            <div class="ws-stat">
+              <span class="ws-stat-label">Next Payment</span>
+              <span class="ws-stat-value">$0</span>
+              <span class="ws-stat-meta">COVID forbearance active</span>
+            </div>
+            <div class="ws-stat">
+              <span class="ws-stat-label">Interest Rate</span>
+              <span class="ws-stat-value">4.53%</span>
+              <span class="ws-stat-meta">weighted average</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       1. NAVIGATION
+  ══════════════════════════════════════ -->
+  <section id="navigation">
+    <h2>Navigation</h2>
+
+    <div class="comp-block">
+      <h3>1a. Nav Item</h3>
+
+      <div class="spec-box">
+        <p class="spec-desc">Sidebar navigation item used in the fixed left sidebar. Three states: Default, Hover, and Active. Uses uppercase label styling with icon + text layout.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>padding</td><td><code>--space-2</code> <code>--space-3</code></td><td>8px 12px</td></tr>
+            <tr><td>gap</td><td><code>--space-2</code></td><td>8px</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-sm</code></td><td>6px</td></tr>
+            <tr><td>font-family</td><td><code>--font-heading</code></td><td>Inter</td></tr>
+            <tr><td>font-size</td><td><code>--text-xs</code></td><td>12px</td></tr>
+            <tr><td>font-weight</td><td><code>--weight-bold</code></td><td>700</td></tr>
+            <tr><td>letter-spacing</td><td><code>--tracking-wider</code></td><td>0.07em</td></tr>
+            <tr><td>icon size</td><td><code>--text-base</code></td><td>14px</td></tr>
+            <tr><td>Default color</td><td><code>--color-text-muted</code></td><td>#94A3B8</td></tr>
+            <tr><td>Active bg</td><td><code>--color-brand-500</code></td><td>#1A56DB</td></tr>
+            <tr><td>Active color</td><td><code>--color-text-inverse</code></td><td>#FFFFFF</td></tr>
+            <tr><td>Hover bg</td><td><code>--color-gray-800</code></td><td>#1E293B</td></tr>
+            <tr><td>Hover color</td><td><code>--color-gray-200</code></td><td>#E2E8F0</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="demo-box dark-bg">
+        <div class="nav-demo-group">
+          <div class="demo-label" style="color: var(--color-gray-500);">Default &nbsp;·&nbsp; Hover &nbsp;·&nbsp; Active</div>
+          <div style="display:flex; gap: var(--space-2);">
+            <div class="nav-item-demo state-default">
+              <i class="ph ph-house"></i><span>Home</span>
+            </div>
+            <div class="nav-item-demo state-hover">
+              <i class="ph ph-credit-card"></i><span>Payments</span>
+            </div>
+            <div class="nav-item-demo state-active">
+              <i class="ph ph-chart-donut"></i><span>My Loans</span>
+            </div>
+          </div>
+          <div class="nav-demo-footer">
+            <div class="nav-item-demo state-default" style="margin-top: var(--space-2);">
+              <i class="ph ph-lifebuoy"></i><span>Support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       2. BUTTONS
+  ══════════════════════════════════════ -->
+  <section id="buttons">
+    <h2>Buttons</h2>
+
+    <!-- 2a -->
+    <div class="comp-block">
+      <h3>2a. Primary Button</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Main action button. Used for primary CTAs.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>padding</td><td><code>--space-2</code> <code>--space-5</code></td><td>8px 20px</td></tr>
+            <tr><td>height</td><td><code>--space-10</code></td><td>40px</td></tr>
+            <tr><td>background</td><td><code>--color-brand-500</code></td><td>#1A56DB</td></tr>
+            <tr><td>color</td><td><code>--color-text-inverse</code></td><td>#FFFFFF</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-md</code></td><td>10px</td></tr>
+            <tr><td>font-size</td><td><code>--text-base</code></td><td>14px</td></tr>
+            <tr><td>font-weight</td><td><code>--weight-semibold</code></td><td>600</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box">
+        <div>
+          <div class="demo-label">Default</div>
+          <button class="btn btn-primary">Make a Payment</button>
+        </div>
+        <div>
+          <div class="demo-label">Hover</div>
+          <button class="btn btn-primary" style="background: var(--color-brand-600);">Make a Payment</button>
+        </div>
+        <div>
+          <div class="demo-label">Disabled</div>
+          <button class="btn btn-primary" disabled>Make a Payment</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2b -->
+    <div class="comp-block">
+      <h3>2b. Ghost Button</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Secondary/outline button for secondary actions.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>background</td><td><code>--color-bg-surface</code></td><td>#FFFFFF</td></tr>
+            <tr><td>border</td><td><code>--border-default</code></td><td>1px solid #E2E8F0</td></tr>
+            <tr><td>color</td><td><code>--color-text-primary</code></td><td>#0A1929</td></tr>
+            <tr><td>height</td><td><code>--space-10</code></td><td>40px</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-md</code></td><td>10px</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box">
+        <div>
+          <div class="demo-label">Default</div>
+          <button class="btn btn-ghost">View Details</button>
+        </div>
+        <div>
+          <div class="demo-label">Hover</div>
+          <button class="btn btn-ghost" style="background: var(--color-gray-100);">View Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2c -->
+    <div class="comp-block">
+      <h3>2c. btn-pay-primary (disabled) &amp; btn-pay-ghost (active)</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Payment card button pair rendered on a blue (brand gradient) background. btn-pay-primary is the "Pay Now" slot — shown in disabled state (gray bg) when no payment is due. btn-pay-ghost is the "Custom Pay" action — always enabled, brand-500 background with brand-400 border.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>btn-pay-primary bg (disabled)</td><td><code>--color-gray-200</code></td><td>#E2E8F0</td></tr>
+            <tr><td>btn-pay-primary color</td><td><code>--color-text-muted</code></td><td>#94A3B8</td></tr>
+            <tr><td>btn-pay-ghost bg</td><td><code>--color-brand-500</code></td><td>#1A56DB</td></tr>
+            <tr><td>btn-pay-ghost border</td><td><code>1px solid --color-brand-400</code></td><td>#4B78F5</td></tr>
+            <tr><td>btn-pay-ghost color</td><td><code>--color-text-inverse</code></td><td>#FFFFFF</td></tr>
+            <tr><td>height</td><td><code>--space-10</code></td><td>40px</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-md</code></td><td>10px</td></tr>
+            <tr><td>font-weight</td><td><code>--weight-semibold</code></td><td>600</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box" style="background: var(--gradient-brand); gap: var(--space-3);">
+        <button class="btn-pay-primary" style="flex:1; max-width:180px;">
+          <i class="ph ph-credit-card"></i> Pay Now
+        </button>
+        <button class="btn-pay-ghost" style="flex:1; max-width:180px;">Custom Pay</button>
+      </div>
+    </div>
+
+    <!-- 2e -->
+    <div class="comp-block">
+      <h3>2e. Simulator Outline Button</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Branded outline button linking to the loan simulator tool.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>background</td><td><code>--color-bg-surface</code></td><td>#FFFFFF</td></tr>
+            <tr><td>border</td><td><code>--border-default</code></td><td>1px solid #E2E8F0</td></tr>
+            <tr><td>color</td><td><code>--color-brand-500</code></td><td>#1A56DB</td></tr>
+            <tr><td>height</td><td><code>--space-10</code></td><td>40px</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-md</code></td><td>10px</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box">
+        <div>
+          <div class="demo-label">Default</div>
+          <button class="btn btn-ghost-brand">
+            Launch Simulator <i class="ph ph-caret-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       3. BADGES & STATUS
+  ══════════════════════════════════════ -->
+  <section id="badges">
+    <h2>Badges &amp; Status</h2>
+
+    <!-- 3a -->
+    <div class="comp-block">
+      <h3>3a. Status Pills</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Small uppercase pill badges indicating status. Used on loan rows and activity items.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>padding</td><td><code>--space-1</code> <code>--space-2</code></td><td>4px 8px</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-full</code></td><td>9999px</td></tr>
+            <tr><td>font-size</td><td><code>--text-2xs</code></td><td>10px</td></tr>
+            <tr><td>font-weight</td><td><code>--weight-bold</code></td><td>700</td></tr>
+            <tr><td>letter-spacing</td><td><code>--tracking-wider</code></td><td>0.07em</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box">
+        <div>
+          <div class="demo-label">Active</div>
+          <span class="badge badge-active">ACTIVE</span>
+        </div>
+        <div>
+          <div class="demo-label">Paid</div>
+          <span class="badge badge-paid">PAID</span>
+        </div>
+        <div>
+          <div class="demo-label">Pending</div>
+          <span class="badge badge-pending">PENDING</span>
+        </div>
+        <div>
+          <div class="demo-label">Overdue</div>
+          <span class="badge badge-overdue">OVERDUE</span>
+        </div>
+        <div>
+          <div class="demo-label">Received</div>
+          <span class="badge badge-received">RECEIVED</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3b -->
+    <div class="comp-block">
+      <h3>3b. Payment Card Badge ("On Track")</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Status badge inside the payment gradient card indicating the account is current.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>bg</td><td><code>--color-bg-success</code></td><td>#ECFDF5</td></tr>
+            <tr><td>color</td><td><code>--color-text-success</code></td><td>#047857</td></tr>
+            <tr><td>padding</td><td><code>--space-1</code> <code>--space-2</code></td><td>4px 8px</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-full</code></td><td>9999px</td></tr>
+            <tr><td>font-size</td><td><code>--text-2xs</code></td><td>10px</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box">
+        <div class="badge-on-track-chip">
+          <span class="badge badge-paid" style="font-weight: var(--weight-bold);">On Track</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3c -->
+    <div class="comp-block">
+      <h3>3c. Loan Number Badge</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Numbered badge identifying each loan in the loans table.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>width/height</td><td><code>--space-8</code></td><td>32px</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-sm</code></td><td>6px</td></tr>
+            <tr><td>bg</td><td><code>--color-bg-brand</code></td><td>#EEF2FF</td></tr>
+            <tr><td>color</td><td><code>--color-text-brand</code></td><td>#1343B8</td></tr>
+            <tr><td>font-weight</td><td><code>--weight-semibold</code></td><td>600</td></tr>
+            <tr><td>font-size</td><td><code>--text-sm</code></td><td>12px</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box">
+        <span class="loan-num-badge">1</span>
+        <span class="loan-num-badge">2</span>
+        <span class="loan-num-badge">3</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       4. INPUTS
+  ══════════════════════════════════════ -->
+  <section id="inputs">
+    <h2>Inputs</h2>
+
+    <div class="comp-block">
+      <h3>4a. Search Input</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Global search field in the topbar. Contains a leading magnifying glass icon.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>height</td><td><code>--space-10</code></td><td>40px</td></tr>
+            <tr><td>width</td><td>—</td><td>340px</td></tr>
+            <tr><td>padding</td><td><code>0 --space-3 0 --space-8</code></td><td>0 12px 0 32px</td></tr>
+            <tr><td>background</td><td><code>--color-bg-surface</code></td><td>#FFFFFF</td></tr>
+            <tr><td>border</td><td><code>--border-default</code></td><td>1px solid #E2E8F0</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-sm</code></td><td>6px</td></tr>
+            <tr><td>font-size</td><td><code>--text-sm</code></td><td>12px</td></tr>
+            <tr><td>Focus border</td><td><code>--color-border-brand</code></td><td>#1A56DB</td></tr>
+            <tr><td>Focus shadow</td><td>—</td><td>0 0 0 3px rgba(26,86,219,0.12)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box" style="gap: var(--space-6);">
+        <div>
+          <div class="demo-label">Default</div>
+          <div class="search-wrapper">
+            <i class="ph ph-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search loans, payments…" />
+          </div>
+        </div>
+        <div>
+          <div class="demo-label">Focus</div>
+          <div class="search-wrapper">
+            <i class="ph ph-magnifying-glass search-icon" style="color: var(--color-brand-500);"></i>
+            <input type="text" class="search-input focus-demo" value="Direct Loan" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       5. PANELS & CARDS
+  ══════════════════════════════════════ -->
+  <section id="panels">
+    <h2>Panels &amp; Cards</h2>
+
+    <!-- 5a -->
+    <div class="comp-block">
+      <h3>5a. Panel Shell</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Base card container used throughout the dashboard. Has a header (title + optional action link) and content area.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>background</td><td><code>--color-bg-surface</code></td><td>#FFFFFF</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-md</code></td><td>10px</td></tr>
+            <tr><td>box-shadow</td><td><code>--shadow-xs</code></td><td>0 1px 2px rgba(0,0,0,0.05)</td></tr>
+            <tr><td>header padding</td><td><code>--space-4</code> <code>--space-5</code></td><td>16px 20px</td></tr>
+            <tr><td>header border-bottom</td><td><code>--border-default</code></td><td>1px solid #E2E8F0</td></tr>
+            <tr><td>panel-title font-size</td><td><code>--text-xl</code></td><td>18px</td></tr>
+            <tr><td>panel-title color</td><td><code>--color-brand-900</code></td><td>#051550</td></tr>
+            <tr><td>panel-link color</td><td><code>--color-brand-500</code></td><td>#1A56DB</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box block">
+        <div class="panel" style="max-width: 480px;">
+          <div class="panel-header">
+            <span class="panel-title">Recent Payments</span>
+            <a class="panel-link" href="#">View All</a>
+          </div>
+          <div class="panel-body">
+            <div class="placeholder-row"></div>
+            <div class="placeholder-row"></div>
+            <div class="placeholder-row"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5b -->
+    <div class="comp-block">
+      <h3>5b. Payment Card</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Main payment due card using the brand gradient. Two states: Action Required (warning alert pill) and Autopay Enabled (success pill). Buttons shown on a blue background swatch — btn-pay-primary (disabled gray) and btn-pay-ghost (active blue).</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>background</td><td><code>--gradient-brand</code></td><td>linear-gradient(29.56deg…)</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-md</code></td><td>10px</td></tr>
+            <tr><td>padding</td><td><code>--space-8</code></td><td>32px</td></tr>
+            <tr><td>width</td><td>—</td><td>400px</td></tr>
+            <tr><td>eyebrow font-size</td><td><code>--text-2xs</code></td><td>10px — Bold, uppercase, tracking-wider</td></tr>
+            <tr><td>eyebrow color</td><td>—</td><td>rgba(255,255,255,0.8)</td></tr>
+            <tr><td>amount font-size</td><td><code>--text-5xl</code></td><td>38px — Bold, tabular-nums</td></tr>
+            <tr><td>amount font-family</td><td><code>--font-heading</code></td><td>Inter</td></tr>
+            <tr><td>badge (on track)</td><td><code>--color-bg-success</code> / <code>--color-text-success</code></td><td>pill: success colors</td></tr>
+            <tr><td>alert (action req)</td><td>—</td><td>rgba(255,255,255,0.12) bg, warning-100 icon</td></tr>
+            <tr><td>autopay-on bg</td><td>—</td><td>rgba(255,255,255,0.12), border rgba(255,255,255,0.2)</td></tr>
+            <tr><td>btn-pay-primary (disabled)</td><td><code>--color-gray-200</code> / <code>--color-text-muted</code></td><td>gray bg, muted text</td></tr>
+            <tr><td>btn-pay-ghost (active)</td><td><code>--color-brand-500</code> / <code>--color-brand-400</code></td><td>brand bg, brand border</td></tr>
+            <tr><td>button height</td><td><code>--space-10</code></td><td>40px</td></tr>
+            <tr><td>button border-radius</td><td><code>--radius-md</code></td><td>10px</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box" style="gap: var(--space-8); align-items: flex-start; flex-wrap: wrap;">
+
+        <!-- State 1: Action Required (warning) -->
+        <div>
+          <div class="demo-label">State 1 — Action Required</div>
+          <div class="payment-card">
+            <div class="payment-card-eyebrow">Total Payment Due</div>
+            <div class="payment-card-amount">$0.00</div>
+            <div class="payment-card-status-row">
+              <span class="badge badge-paid">On Track</span>
+            </div>
+            <div class="payment-card-autopay">
+              <i class="ph ph-warning" style="color: var(--color-warning-100); font-size: var(--text-lg); flex-shrink:0;"></i>
+              <span class="payment-card-autopay-text"><strong style="color:white; font-weight:600;">Action Required:</strong> Auto Pay confirmation needed.</span>
+              <button style="margin-left:auto; font-size:var(--text-xs); font-weight:700; color:white; text-decoration:underline; background:none; border:none; cursor:pointer; white-space:nowrap;">Enable →</button>
+            </div>
+            <div class="payment-card-buttons">
+              <button class="btn-pay-primary"><i class="ph ph-credit-card"></i> Pay Now</button>
+              <button class="btn-pay-ghost">Custom Pay</button>
+            </div>
+            <div class="payment-card-next" style="font-size:var(--text-base); color:rgba(255,255,255,0.8);">Next payment due: Feb 1, 2026</div>
+          </div>
+        </div>
+
+        <!-- State 2: Autopay Enabled (success) -->
+        <div>
+          <div class="demo-label">State 2 — Autopay Enabled</div>
+          <div class="payment-card">
+            <div class="payment-card-eyebrow">Total Payment Due</div>
+            <div class="payment-card-amount">$0.00</div>
+            <div class="payment-card-status-row">
+              <span class="badge badge-paid">On Track</span>
+            </div>
+            <div class="payment-card-autopay-on">
+              <i class="ph ph-check-circle"></i>
+              <span style="flex:1;">Auto Pay is enabled. Next payment on Feb 1, 2026.</span>
+              <button style="background:none; border:none; color:white; font-size:var(--text-sm); font-weight:700; cursor:pointer;">Manage</button>
+            </div>
+            <div class="payment-card-buttons">
+              <button class="btn-pay-primary"><i class="ph ph-credit-card"></i> Pay Now</button>
+              <button class="btn-pay-ghost">Custom Pay</button>
+            </div>
+            <div class="payment-card-next" style="font-size:var(--text-base); color:rgba(255,255,255,0.8);">Payments suspended — COVID forbearance active</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 5c -->
+    <div class="comp-block">
+      <h3>5c. Simulator Card</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Loan simulator promotional card. Light blue background with TOOLS label, title, body, and CTA buttons.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>background</td><td><code>--color-bg-brand</code></td><td>#EEF2FF</td></tr>
+            <tr><td>border-radius</td><td><code>--radius-md</code></td><td>10px</td></tr>
+            <tr><td>padding</td><td><code>--space-6</code> <code>--space-7</code></td><td>24px 28px</td></tr>
+            <tr><td>title font-size</td><td><code>--text-2xl</code></td><td>20px</td></tr>
+            <tr><td>title color</td><td><code>--color-gray-800</code></td><td>#1E293B</td></tr>
+            <tr><td>body color</td><td><code>--color-text-secondary</code></td><td>#64748B</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box">
+        <div class="simulator-card">
+          <div class="simulator-eyebrow">
+            <i class="ph ph-wrench" style="font-size: var(--text-xs);"></i>
+            Tools
+          </div>
+          <div class="simulator-title">Loan Repayment Simulator</div>
+          <p class="simulator-body">Explore how extra payments or different repayment plans could reduce your total interest and shorten your loan term.</p>
+          <div class="simulator-actions">
+            <button class="btn btn-ghost-brand">Launch Simulator <i class="ph ph-caret-right"></i></button>
+            <a class="simulator-read-more" href="#">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       6. LOAN ROWS
+  ══════════════════════════════════════ -->
+  <section id="loans">
+    <h2>Loan Rows</h2>
+
+    <div class="comp-block">
+      <h3>6a. Active Loan Row</h3>
+      <div class="spec-box">
+        <p class="spec-desc">A single loan entry in the My Loans panel. Shows numbered badge, loan name/APR, balance, and status pill.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>padding</td><td><code>--space-3</code> <code>--space-5</code></td><td>12px 20px</td></tr>
+            <tr><td>gap</td><td><code>--space-3</code></td><td>12px</td></tr>
+            <tr><td>border-bottom</td><td><code>--border-subtle</code></td><td>1px solid #F1F5F9</td></tr>
+            <tr><td>badge bg</td><td><code>--color-bg-brand</code></td><td>#EEF2FF</td></tr>
+            <tr><td>badge color</td><td><code>--color-text-brand</code></td><td>#1343B8</td></tr>
+            <tr><td>badge size</td><td><code>--space-8</code></td><td>32px</td></tr>
+            <tr><td>name font-size</td><td><code>--text-base</code></td><td>14px</td></tr>
+            <tr><td>name weight</td><td><code>--weight-medium</code></td><td>500</td></tr>
+            <tr><td>meta font-size</td><td><code>--text-sm</code></td><td>12px</td></tr>
+            <tr><td>meta color</td><td><code>--color-text-secondary</code></td><td>#64748B</td></tr>
+            <tr><td>amount font-size</td><td><code>--text-base</code></td><td>14px</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box block">
+        <div class="panel">
+          <div class="panel-tabs">
+            <div class="panel-tab active">Active Loans</div>
+            <div class="panel-tab">Paid in Full</div>
+          </div>
+
+          <div class="loan-row">
+            <span class="loan-num-badge">1</span>
+            <div class="loan-info">
+              <div class="loan-name">Direct Loan – Unsubsidized</div>
+              <div class="loan-meta">3.73% APR</div>
+            </div>
+            <span class="loan-amount">$4,500.00</span>
+            <span class="badge badge-active">ACTIVE</span>
+          </div>
+
+          <div class="loan-row">
+            <span class="loan-num-badge">2</span>
+            <div class="loan-info">
+              <div class="loan-name">Federal Direct PLUS</div>
+              <div class="loan-meta">6.28% APR</div>
+            </div>
+            <span class="loan-amount">$8,320.00</span>
+            <span class="badge badge-active">ACTIVE</span>
+          </div>
+
+          <div class="loan-row">
+            <span class="loan-num-badge" style="background: var(--color-bg-success); color: var(--color-text-success);">3</span>
+            <div class="loan-info">
+              <div class="loan-name">Private Student Loan</div>
+              <div class="loan-meta">5.15% APR</div>
+            </div>
+            <span class="loan-amount" style="color: var(--color-text-success);">$0.00</span>
+            <span class="badge badge-paid">PAID</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       7. ACTIVITY ITEMS / RECENT PAYMENTS
+  ══════════════════════════════════════ -->
+  <section id="activity">
+    <h2>Activity Items</h2>
+
+    <div class="comp-block">
+      <h3>7a. Recent Payments Panel</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Payment history panel with panel-title-h2 (blue ph-info icon) and three activity item variants: Pending, Received, and default (no status icon bg). Activity right: status pill on the left, amount on the right within a fixed 160px column.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>panel-title-h2 size</td><td><code>--text-xl</code></td><td>18px — Semibold, color-brand-900</td></tr>
+            <tr><td>info icon color</td><td><code>--color-brand-500</code></td><td>#1A56DB</td></tr>
+            <tr><td>activity padding</td><td><code>--space-3</code> <code>0</code></td><td>12px 0</td></tr>
+            <tr><td>activity border-bottom</td><td><code>--border-subtle</code></td><td>1px solid #F1F5F9</td></tr>
+            <tr><td>icon size</td><td><code>--space-8</code></td><td>32px circle</td></tr>
+            <tr><td>pending icon bg</td><td><code>--color-warning-50</code></td><td>#FFFBEB</td></tr>
+            <tr><td>pending icon color</td><td><code>--color-warning-500</code></td><td>#D97706</td></tr>
+            <tr><td>received icon bg</td><td><code>--color-success-50</code></td><td>#ECFDF5</td></tr>
+            <tr><td>received icon color</td><td><code>--color-success-500</code></td><td>#059669</td></tr>
+            <tr><td>date font-size</td><td><code>--text-sm</code></td><td>12px — color-text-secondary</td></tr>
+            <tr><td>source font-size</td><td><code>--text-base</code></td><td>14px — Medium, color-text-primary</td></tr>
+            <tr><td>activity-right width</td><td>—</td><td>160px — pill left, amount right</td></tr>
+            <tr><td>amount font-size</td><td><code>--text-base</code></td><td>14px — Medium, tabular-nums</td></tr>
+            <tr><td>status font-size</td><td><code>--text-2xs</code></td><td>10px — Bold, uppercase, tracking-wider</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box block">
+        <div class="panel" style="max-width: 560px;">
+          <div class="panel-header" style="background: var(--color-bg-page);">
+            <h2 class="panel-title-h2">
+              <i class="ph ph-info panel-title-info-icon"></i>
+              Recent Payments
+            </h2>
+            <a class="panel-link" href="#">View All</a>
+          </div>
+          <div class="panel-body">
+
+            <!-- Pending -->
+            <div class="activity-item">
+              <div class="activity-icon pending">
+                <i class="ph ph-clock"></i>
+              </div>
+              <div class="activity-info">
+                <div class="activity-date">Jan 1, 2022</div>
+                <div class="activity-source">Auto Pay</div>
+              </div>
+              <div class="activity-right" style="display:flex; align-items:center; justify-content:space-between; width:160px; flex-shrink:0;">
+                <span class="badge badge-pending">PENDING</span>
+                <span class="activity-amount">$1,000.00</span>
+              </div>
+            </div>
+
+            <!-- Received -->
+            <div class="activity-item">
+              <div class="activity-icon received">
+                <i class="ph ph-check-circle"></i>
+              </div>
+              <div class="activity-info">
+                <div class="activity-date">Dec 1, 2021</div>
+                <div class="activity-source">Auto Pay</div>
+              </div>
+              <div class="activity-right" style="display:flex; align-items:center; justify-content:space-between; width:160px; flex-shrink:0;">
+                <span class="badge badge-received">RECEIVED</span>
+                <span class="activity-amount">$1,000.00</span>
+              </div>
+            </div>
+
+            <!-- Default (no status icon variant) -->
+            <div class="activity-item">
+              <div class="activity-icon" style="background: var(--color-bg-subtle); color: var(--color-text-muted);">
+                <i class="ph ph-bank"></i>
+              </div>
+              <div class="activity-info">
+                <div class="activity-date">Nov 1, 2021</div>
+                <div class="activity-source">Manual Pay</div>
+              </div>
+              <div class="activity-right" style="display:flex; align-items:center; justify-content:space-between; width:160px; flex-shrink:0;">
+                <span class="badge badge-received">RECEIVED</span>
+                <span class="activity-amount">$500.00</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       8. NOTIFICATIONS
+  ══════════════════════════════════════ -->
+  <section id="notifications">
+    <h2>Notifications</h2>
+
+    <div class="comp-block">
+      <h3>Notification Panel</h3>
+      <div class="spec-box">
+        <p class="spec-desc">Floating notification panel (400px wide). Header shows title + unread count. A "TODAY" section divider separates temporal groups. Unread items use brand-50 bg; read items use white. Unread dot sits inline with the timestamp. Actions are text links, not buttons. Source: Figma node 112-4404.</p>
+        <table class="spec-table">
+          <thead><tr><th>Property</th><th>Token</th><th>Resolved</th></tr></thead>
+          <tbody>
+            <tr><td>panel shadow</td><td><code>--shadow-lg</code></td><td>0 8px 24px rgba(0,0,0,.12)</td></tr>
+            <tr><td>panel radius</td><td><code>--radius-md</code></td><td>10px</td></tr>
+            <tr><td>header padding</td><td><code>--space-4</code> <code>--space-6</code></td><td>16px 24px</td></tr>
+            <tr><td>panel title size</td><td><code>--text-xl</code></td><td>18px</td></tr>
+            <tr><td>panel title weight</td><td><code>--weight-semibold</code></td><td>600</td></tr>
+            <tr><td>count color</td><td><code>--color-text-secondary</code></td><td>#64748B</td></tr>
+            <tr><td>section header bg</td><td><code>--color-bg-subtle</code></td><td>#F1F5F9</td></tr>
+            <tr><td>section label size</td><td><code>--text-xs</code></td><td>12px — Bold, uppercase, tracking-wide</td></tr>
+            <tr><td>mark-all color</td><td><code>--color-brand-500</code></td><td>#1A56DB — Medium weight</td></tr>
+            <tr><td>item padding</td><td><code>--space-4</code> <code>--space-6</code></td><td>16px 24px</td></tr>
+            <tr><td>item gap</td><td><code>--space-3</code></td><td>12px</td></tr>
+            <tr><td>unread item bg</td><td><code>--color-bg-brand</code></td><td>#EEF2FF</td></tr>
+            <tr><td>avatar size</td><td><code>--space-9</code></td><td>36px — with semantic border</td></tr>
+            <tr><td>avatar (warning) bg</td><td><code>--color-bg-warning</code></td><td>#FFFBEB</td></tr>
+            <tr><td>avatar (warning) border</td><td><code>--color-warning-100</code></td><td>#FDE68A</td></tr>
+            <tr><td>avatar (danger) bg</td><td><code>--color-bg-danger</code></td><td>#FEF2F2</td></tr>
+            <tr><td>avatar (danger) border</td><td><code>--color-danger-100</code></td><td>#FECACA</td></tr>
+            <tr><td>content gap</td><td><code>--space-1</code></td><td>4px</td></tr>
+            <tr><td>title size</td><td><code>--text-base</code></td><td>14px — Semibold, gray-900</td></tr>
+            <tr><td>time size</td><td><code>--text-2xs</code></td><td>10px — Regular, text-secondary</td></tr>
+            <tr><td>unread dot size</td><td>—</td><td>8px — inline with time, brand-500</td></tr>
+            <tr><td>body size</td><td><code>--text-sm</code></td><td>12px — Regular, text-secondary, leading-relaxed</td></tr>
+            <tr><td>action link size</td><td><code>--text-xs</code></td><td>12px — Semibold, brand-500 — text link, no border</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box" style="display:block; padding: var(--space-8);">
+        <div class="notif-panel-wrap">
+
+          <!-- Panel Header -->
+          <div class="notif-panel-hd">
+            <span class="notif-panel-title">Notifications</span>
+            <span class="notif-panel-count">2</span>
+          </div>
+
+          <!-- Section: Today -->
+          <div class="notif-section-hd">
+            <span class="notif-section-label">Today</span>
+            <button class="notif-mark-all">Mark all as read</button>
+          </div>
+
+          <!-- Notification 1: Auto Pay (unread) -->
+          <div class="notif-item unread">
+            <div class="notif-avatar warning">
+              <i class="ph ph-credit-card"></i>
+            </div>
+            <div class="notif-content">
+              <div class="notif-title-row">
+                <span class="notif-title">Auto Pay Confirmation Required</span>
+                <div class="notif-time-wrap">
+                  <span class="notif-time">Just now</span>
+                  <span class="notif-unread-dot"></span>
+                </div>
+              </div>
+              <p class="notif-body">Auto-Pay hasn't been re-confirmed since the COVID-19 suspension ended. Re-enable to avoid missing a payment.</p>
+              <div class="notif-actions">
+                <a class="notif-action-link" href="#">Enable Auto-Pay →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notification 2: Forbearance (unread) -->
+          <div class="notif-item unread">
+            <div class="notif-avatar warning">
+              <i class="ph ph-warning"></i>
+            </div>
+            <div class="notif-content">
+              <div class="notif-title-row">
+                <span class="notif-title">National Emergency Forbearance Active</span>
+                <div class="notif-time-wrap">
+                  <span class="notif-time">3 hrs ago</span>
+                  <span class="notif-unread-dot"></span>
+                </div>
+              </div>
+              <p class="notif-body">Your loans are under COVID-19 national emergency forbearance. Payments are suspended and no interest is accruing.</p>
+              <div class="notif-actions">
+                <a class="notif-action-link" href="#">Confirm Auto Pay →</a>
+                <a class="notif-action-link" href="#">Opt Out</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notification 3: IDR (read — white bg, no dot) -->
+          <div class="notif-item">
+            <div class="notif-avatar danger">
+              <i class="ph ph-clock-countdown"></i>
+            </div>
+            <div class="notif-content">
+              <div class="notif-title-row">
+                <span class="notif-title">IDR Renewal Due - Action Required</span>
+                <div class="notif-time-wrap">
+                  <span class="notif-time">1 day ago</span>
+                </div>
+              </div>
+              <p class="notif-body">Your Income-Driven Repayment plan renewal is due. Failure to renew may result in significantly higher payments.</p>
+              <div class="notif-actions">
+                <a class="notif-action-link" href="#">Renew at StudentAid.gov →</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       9. ICONS
+  ══════════════════════════════════════ -->
+  <section id="icons">
+    <h2>Icons</h2>
+
+    <div class="comp-block">
+      <h3>9a. Icon Reference</h3>
+      <div class="spec-box">
+        <p class="spec-desc">All Phosphor Icons used in the Neuron portal, shown at three sizes (24px, 20px, 16px). Library: <code>@phosphor-icons/web@2.1.1</code>. Syntax: <code>&lt;i class="ph ph-{name}"&gt;&lt;/i&gt;</code></p>
+      </div>
+      <div class="demo-box block">
+        <table class="icon-grid">
+          <thead>
+            <tr>
+              <th>Icon class</th>
+              <th>24px</th>
+              <th>20px</th>
+              <th>16px</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="icon-name">ph-house</td>
+              <td><div class="icon-cell"><i class="ph ph-house" style="font-size:24px; color: var(--color-gray-700);"></i><span class="icon-size-label">24</span></div></td>
+              <td><div class="icon-cell"><i class="ph ph-house" style="font-size:20px; color: var(--color-gray-700);"></i><span class="icon-size-label">20</span></div></td>
+              <td><div class="icon-cell"><i class="ph ph-house" style="font-size:16px; color: var(--color-gray-700);"></i><span class="icon-size-label">16</span></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-credit-card</td>
+              <td><div class="icon-cell"><i class="ph ph-credit-card" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-credit-card" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-credit-card" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-chart-donut</td>
+              <td><div class="icon-cell"><i class="ph ph-chart-donut" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-chart-donut" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-chart-donut" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-files</td>
+              <td><div class="icon-cell"><i class="ph ph-files" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-files" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-files" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-wrench</td>
+              <td><div class="icon-cell"><i class="ph ph-wrench" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-wrench" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-wrench" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-lifebuoy</td>
+              <td><div class="icon-cell"><i class="ph ph-lifebuoy" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-lifebuoy" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-lifebuoy" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-bell</td>
+              <td><div class="icon-cell"><i class="ph ph-bell" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-bell" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-bell" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-chat-circle-dots</td>
+              <td><div class="icon-cell"><i class="ph ph-chat-circle-dots" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-chat-circle-dots" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-chat-circle-dots" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-user</td>
+              <td><div class="icon-cell"><i class="ph ph-user" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-user" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-user" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-caret-down</td>
+              <td><div class="icon-cell"><i class="ph ph-caret-down" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-caret-down" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-caret-down" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-magnifying-glass</td>
+              <td><div class="icon-cell"><i class="ph ph-magnifying-glass" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-magnifying-glass" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-magnifying-glass" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-info</td>
+              <td><div class="icon-cell"><i class="ph ph-info" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-info" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-info" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-warning</td>
+              <td><div class="icon-cell"><i class="ph ph-warning" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-warning" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-warning" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-check-circle</td>
+              <td><div class="icon-cell"><i class="ph ph-check-circle" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-check-circle" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-check-circle" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-x</td>
+              <td><div class="icon-cell"><i class="ph ph-x" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-x" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-x" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-sign-out</td>
+              <td><div class="icon-cell"><i class="ph ph-sign-out" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-sign-out" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-sign-out" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-caret-right</td>
+              <td><div class="icon-cell"><i class="ph ph-caret-right" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-caret-right" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-caret-right" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+            <tr>
+              <td class="icon-name">ph-clock-countdown</td>
+              <td><div class="icon-cell"><i class="ph ph-clock-countdown" style="font-size:24px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-clock-countdown" style="font-size:20px; color: var(--color-gray-700);"></i></div></td>
+              <td><div class="icon-cell"><i class="ph ph-clock-countdown" style="font-size:16px; color: var(--color-gray-700);"></i></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Scroll spy: highlight the active left-nav item based on scroll position
+  (function () {
+    const navItems = document.querySelectorAll('.left-nav-item');
+    const sections = Array.from(navItems).map(item => {
+      const id = item.getAttribute('href').replace('#', '');
+      return document.getElementById(id);
+    });
+
+    function onScroll() {
+      const scrollY = window.scrollY + 80; // offset for sticky header
+      let current = 0;
+      sections.forEach((section, i) => {
+        if (section && section.offsetTop <= scrollY) {
+          current = i;
+        }
+      });
+      navItems.forEach((item, i) => {
+        item.classList.toggle('active', i === current);
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+
+</body>
+</html>
