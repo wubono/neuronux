@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neuron — Token Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+  <style>
+    :root {
+      /* ── Brand ── */
+      --color-brand-50:  #EEF2FF;
+      --color-brand-100: #D0DBFF;
+      --color-brand-200: #A3B8FF;
+      --color-brand-300: #7C9EFF;
+      --color-brand-400: #4B78F5;
+      --color-brand-500: #1A56DB;
+      --color-brand-600: #1343B8;
+      --color-brand-700: #0E3290;
+      --color-brand-800: #092370;
+      --color-brand-900: #051550;
+
+      /* ── Success ── */
+      --color-success-50:  #ECFDF5;
+      --color-success-100: #A7F3D0;
+      --color-success-500: #059669;
+      --color-success-600: #047857;
+      --color-success-green: #10B981;
+
+      /* ── Warning ── */
+      --color-warning-50:  #FFFBEB;
+      --color-warning-100: #FDE68A;
+      --color-warning-500: #D97706;
+      --color-warning-600: #B45309;
+
+      /* ── Danger ── */
+      --color-danger-50:  #FEF2F2;
+      --color-danger-100: #FECACA;
+      --color-danger-400: #F87171;
+      --color-danger-500: #EF4444;
+      --color-danger-600: #DC2626;
+
+      /* ── Neutrals / Surface ── */
+      --color-white:      #FFFFFF;
+      --color-surface:    #FFFFFF;
+      --color-page-bg:    #F8FAFC;
+      --color-gray-50:  #F8FAFC;
+      --color-gray-100: #F1F5F9;
+      --color-gray-200: #E2E8F0;
+      --color-gray-300: #CBD5E1;
+      --color-gray-400: #94A3B8;
+      --color-gray-500: #64748B;
+      --color-gray-600: #475569;
+      --color-gray-700: #334155;
+      --color-gray-800: #1E293B;
+      --color-gray-900: #0A1929;
+
+      /* ── Semantic: Text ── */
+      --color-text-primary:   var(--color-gray-900);
+      --color-text-secondary: var(--color-gray-500);
+      --color-text-muted:     var(--color-gray-400);
+      --color-text-inverse:   var(--color-white);
+      --color-text-brand:     var(--color-brand-600);
+      --color-text-success:   var(--color-success-600);
+      --color-text-warning:   var(--color-warning-600);
+      --color-text-danger:    var(--color-danger-600);
+
+      /* ── Semantic: Border ── */
+      --color-border-default: var(--color-gray-200);
+      --color-border-subtle:  var(--color-gray-100);
+      --color-border-strong:  var(--color-gray-300);
+      --color-border-brand:   var(--color-brand-500);
+      --color-border-success: var(--color-success-500);
+      --color-border-warning: var(--color-warning-500);
+      --color-border-danger:  var(--color-danger-500);
+
+      /* ── Semantic: Background ── */
+      --color-bg-page:    var(--color-page-bg);
+      --color-bg-surface: var(--color-surface);
+      --color-bg-subtle:  var(--color-gray-100);
+      --color-bg-brand:   var(--color-brand-50);
+      --color-bg-success: var(--color-success-50);
+      --color-bg-warning: var(--color-warning-50);
+      --color-bg-danger:  var(--color-danger-50);
+
+      /* ── Gradients ── */
+      --gradient-brand:    linear-gradient(29.56deg, var(--color-brand-500) 13.4%, #2563EB 50%, #1D4ED8 86.6%);
+      --gradient-dark:     linear-gradient(135deg, var(--color-gray-900) 0%, var(--color-gray-800) 100%);
+      --gradient-progress: linear-gradient(90deg, var(--color-brand-500), var(--color-brand-200));
+
+      /* ── Typography ── */
+      --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono:    'Inter', system-ui, -apple-system, sans-serif;
+
+      --text-2xs:  10px;
+      --text-xs:   12px;
+      --text-sm:   12px;
+      --text-base: 14px;
+      --text-lg:   16px;
+      --text-xl:   18px;
+      --text-2xl:  20px;
+      --text-3xl:  24px;
+      --text-4xl:  32px;
+      --text-5xl:  38px;
+
+      --weight-regular:  400;
+      --weight-medium:   500;
+      --weight-semibold: 600;
+      --weight-bold:     700;
+
+      --leading-tight:   1.2;
+      --leading-snug:    1.4;
+      --leading-normal:  1.5;
+      --leading-relaxed: 1.6;
+
+      --tracking-tight:  -0.5px;
+      --tracking-normal: 0;
+      --tracking-wide:   0.04em;
+      --tracking-wider:  0.07em;
+
+      /* ── Spacing ── */
+      --space-1:  4px;
+      --space-2:  8px;
+      --space-3:  12px;
+      --space-4:  16px;
+      --space-5:  20px;
+      --space-6:  24px;
+      --space-7:  28px;
+      --space-8:  32px;
+      --space-9:  36px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+
+      /* ── Radius ── */
+      --radius-xs:   4px;
+      --radius-sm:   6px;
+      --radius-md:   10px;
+      --radius-lg:   14px;
+      --radius-xl:   18px;
+      --radius-full: 9999px;
+
+      /* ── Shadows ── */
+      --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-sm: 0 2px 6px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+      --shadow-xl: 0 16px 40px rgba(0,0,0,0.16);
+
+      /* ── Borders ── */
+      --border-default: 1px solid var(--color-border-default);
+      --border-subtle:  1px solid var(--color-border-subtle);
+      --border-strong:  1px solid var(--color-border-strong);
+
+      /* ── Layout ── */
+      --sidebar-width:        224px;
+      --topbar-height:        64px;
+      --banner-height:        40px;
+      --global-topbar-height: 56px;
+      --content-gap:          var(--space-4);
+
+      /* ── 8px Grid System ── */
+      --grid-unit:    8px;
+      --grid-gutter:  24px;
+      --grid-margin:  32px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      font-weight: var(--weight-regular);
+      line-height: var(--leading-normal);
+      color: var(--color-text-primary);
+      background: var(--color-bg-page);
+      min-width: 1280px;
+    }
+
+    /* ── Doc Top Nav ── */
+    .doc-topnav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 56px;
+      background: var(--color-bg-surface);
+      border-bottom: var(--border-default);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--space-8);
+    }
+    .topnav-tabs {
+      display: flex;
+      align-items: stretch;
+      height: 56px;
+    }
+    .topnav-tab {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0 var(--space-5);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+    .topnav-tab:hover { color: var(--color-text-primary); }
+    .topnav-tab.active {
+      color: var(--color-brand-500);
+      border-bottom-color: var(--color-brand-500);
+      font-weight: var(--weight-semibold);
+    }
+
+    /* ── Sidebar ── */
+    .doc-sidebar {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      width: 220px;
+      height: calc(100vh - 56px);
+      background: var(--color-gray-50);
+      border-right: var(--border-default);
+      padding: var(--space-6) 0;
+      overflow-y: auto;
+    }
+    .sidebar-section-label {
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      padding: var(--space-5) var(--space-5) var(--space-2);
+    }
+    .sidebar-link {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      padding: var(--space-2) var(--space-5);
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar-link:hover {
+      color: var(--color-text-primary);
+      background: var(--color-bg-subtle);
+    }
+    .sidebar-link.active {
+      color: var(--color-text-brand);
+      background: var(--color-bg-brand);
+      border-left-color: var(--color-brand-500);
+      font-weight: var(--weight-semibold);
+    }
+
+    /* ── Content ── */
+    .doc-content {
+      margin-left: 220px;
+      padding: var(--space-12) var(--space-16);
+    }
+
+    /* ── Section ── */
+    .doc-section {
+      margin-bottom: var(--space-16);
+      scroll-margin-top: 72px;
+    }
+    .section-heading {
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-semibold);
+      color: var(--color-text-primary);
+      line-height: var(--leading-tight);
+      border-bottom: var(--border-default);
+      padding-bottom: var(--space-4);
+      margin-bottom: var(--space-3);
+    }
+    .section-desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--leading-relaxed);
+      margin-bottom: var(--space-8);
+    }
+    .subsection-label {
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-top: var(--space-8);
+      margin-bottom: var(--space-3);
+    }
+
+    /* ── Search bar ── */
+    .token-search-wrap {
+      position: relative;
+      max-width: 400px;
+      margin-bottom: var(--space-8);
+    }
+    .token-search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-muted);
+      font-size: 15px;
+      pointer-events: none;
+    }
+    .token-search {
+      width: 100%;
+      height: 38px;
+      padding: 0 var(--space-4) 0 36px;
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      background: var(--color-bg-surface);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .token-search::placeholder { color: var(--color-text-muted); }
+    .token-search:focus {
+      border-color: var(--color-brand-400);
+      box-shadow: 0 0 0 3px rgba(26,86,219,0.08);
+    }
+
+    /* ── Token Table ── */
+    .token-table {
+      width: 100%;
+      border: var(--border-default);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--color-bg-surface);
+      box-shadow: var(--shadow-xs);
+      margin-bottom: var(--space-6);
+    }
+    .token-table-head {
+      display: grid;
+      grid-template-columns: 280px 1fr 120px;
+      gap: 0;
+      background: var(--color-gray-50);
+      border-bottom: var(--border-default);
+      padding: var(--space-2) var(--space-5);
+    }
+    .token-table-head span {
+      font-size: var(--text-2xs);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    .token-row {
+      display: grid;
+      grid-template-columns: 280px 1fr 120px;
+      align-items: center;
+      gap: 0;
+      padding: 10px var(--space-5);
+      border-bottom: var(--border-subtle);
+      transition: background 0.12s;
+    }
+    .token-row:last-child { border-bottom: none; }
+    .token-row:hover { background: var(--color-gray-50); }
+    .token-row.hidden { display: none; }
+
+    .token-name {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-brand);
+      background: var(--color-bg-brand);
+      padding: 2px 6px;
+      border-radius: var(--radius-xs);
+      display: inline-block;
+      cursor: pointer;
+      transition: background 0.12s;
+      user-select: all;
+    }
+    .token-name:hover { background: var(--color-brand-100); }
+    .token-name:active { background: var(--color-brand-200); }
+
+    .token-value {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      padding-right: var(--space-4);
+    }
+    .token-alias {
+      font-style: italic;
+      color: var(--color-text-muted);
+    }
+
+    .token-preview {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    /* Color swatch */
+    .swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0,0,0,0.08);
+      flex-shrink: 0;
+    }
+
+    /* Spacing bar */
+    .space-bar {
+      height: 8px;
+      border-radius: var(--radius-xs);
+      background: var(--color-brand-200);
+      min-width: 4px;
+    }
+
+    /* Radius preview */
+    .radius-box {
+      width: 28px;
+      height: 28px;
+      background: var(--color-brand-100);
+      border: 2px solid var(--color-brand-300);
+    }
+
+    /* Shadow preview */
+    .shadow-box {
+      width: 32px;
+      height: 20px;
+      background: var(--color-bg-surface);
+      border-radius: var(--radius-sm);
+    }
+
+    /* Type sample */
+    .type-sample {
+      font-family: var(--font-sans);
+      color: var(--color-text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Gradient swatch */
+    .gradient-swatch {
+      width: 80px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* Copy toast */
+    .copy-toast {
+      position: fixed;
+      bottom: var(--space-8);
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--color-gray-800);
+      color: var(--color-white);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      padding: var(--space-2) var(--space-5);
+      border-radius: var(--radius-full);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 9999;
+    }
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* No results */
+    .no-results {
+      text-align: center;
+      padding: var(--space-10);
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+      display: none;
+    }
+    .no-results.visible { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- Top Nav -->
+<header class="doc-topnav">
+  <img src="https://www.figma.com/api/mcp/asset/b495e5f9-4ed4-4837-b39a-103a08072925" alt="neuron" style="height:22px;width:auto;">
+  <nav class="topnav-tabs">
+    <a class="topnav-tab" href="foundation.html">Foundation</a>
+    <a class="topnav-tab" href="components.html">Components</a>
+    <a class="topnav-tab active" href="tokens.html">Tokens</a>
+    <a class="topnav-tab" href="neuron_v2.html" target="_blank">Prototype <i class="ph ph-arrow-square-out" style="font-size:11px;"></i></a>
+  </nav>
+</header>
+
+<!-- Sidebar -->
+<nav class="doc-sidebar" id="doc-sidebar">
+  <div class="sidebar-section-label">Token Groups</div>
+  <a class="sidebar-link" href="#color-primitives">Color Primitives</a>
+  <a class="sidebar-link" href="#color-semantic">Color Semantic</a>
+  <a class="sidebar-link" href="#gradients">Gradients</a>
+  <a class="sidebar-link" href="#typography">Typography</a>
+  <a class="sidebar-link" href="#spacing">Spacing</a>
+  <a class="sidebar-link" href="#radius">Radius</a>
+  <a class="sidebar-link" href="#shadows">Shadows</a>
+  <a class="sidebar-link" href="#borders">Borders</a>
+  <a class="sidebar-link" href="#layout">Layout</a>
+</nav>
+
+<!-- Content -->
+<main class="doc-content">
+
+  <!-- Search -->
+  <div class="token-search-wrap">
+    <i class="ph ph-magnifying-glass token-search-icon"></i>
+    <input class="token-search" id="token-search" type="text" placeholder="Search tokens… e.g. --color-brand-500">
+  </div>
+  <div class="no-results" id="no-results">No tokens match your search.</div>
+
+
+  <!-- ══ 1. COLOR PRIMITIVES ══ -->
+  <section class="doc-section" id="color-primitives">
+    <h2 class="section-heading">Color Primitives</h2>
+    <p class="section-desc">Raw named values. The source of truth. Never reference these directly in components — use semantic tokens instead.</p>
+
+    <div class="subsection-label">Brand</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--color-brand-50</code><span class="token-value">#EEF2FF</span><div class="token-preview"><span class="swatch" style="background:#EEF2FF;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-brand-100</code><span class="token-value">#D0DBFF</span><div class="token-preview"><span class="swatch" style="background:#D0DBFF;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-brand-200</code><span class="token-value">#A3B8FF</span><div class="token-preview"><span class="swatch" style="background:#A3B8FF;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-brand-300</code><span class="token-value">#7C9EFF</span><div class="token-preview"><span class="swatch" style="background:#7C9EFF;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-brand-400</code><span class="token-value">#4B78F5</span><div class="token-preview"><span class="swatch" style="background:#4B78F5;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-brand-500</code><span class="token-value">#1A56DB</span><div class="token-preview"><span class="swatch" style="background:#1A56DB;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-brand-600</code><span class="token-value">#1343B8</span><div class="token-preview"><span class="swatch" style="background:#1343B8;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-brand-700</code><span class="token-value">#0E3290</span><div class="token-preview"><span class="swatch" style="background:#0E3290;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-brand-800</code><span class="token-value">#092370</span><div class="token-preview"><span class="swatch" style="background:#092370;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-brand-900</code><span class="token-value">#051550</span><div class="token-preview"><span class="swatch" style="background:#051550;"></span></div></div>
+    </div>
+
+    <div class="subsection-label">Success</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--color-success-50</code><span class="token-value">#ECFDF5</span><div class="token-preview"><span class="swatch" style="background:#ECFDF5;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-success-100</code><span class="token-value">#A7F3D0</span><div class="token-preview"><span class="swatch" style="background:#A7F3D0;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-success-500</code><span class="token-value">#059669</span><div class="token-preview"><span class="swatch" style="background:#059669;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-success-600</code><span class="token-value">#047857</span><div class="token-preview"><span class="swatch" style="background:#047857;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-success-green</code><span class="token-value">#10B981</span><div class="token-preview"><span class="swatch" style="background:#10B981;"></span></div></div>
+    </div>
+
+    <div class="subsection-label">Warning</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--color-warning-50</code><span class="token-value">#FFFBEB</span><div class="token-preview"><span class="swatch" style="background:#FFFBEB;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-warning-100</code><span class="token-value">#FDE68A</span><div class="token-preview"><span class="swatch" style="background:#FDE68A;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-warning-500</code><span class="token-value">#D97706</span><div class="token-preview"><span class="swatch" style="background:#D97706;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-warning-600</code><span class="token-value">#B45309</span><div class="token-preview"><span class="swatch" style="background:#B45309;"></span></div></div>
+    </div>
+
+    <div class="subsection-label">Danger</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--color-danger-50</code><span class="token-value">#FEF2F2</span><div class="token-preview"><span class="swatch" style="background:#FEF2F2;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-danger-100</code><span class="token-value">#FECACA</span><div class="token-preview"><span class="swatch" style="background:#FECACA;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-danger-400</code><span class="token-value">#F87171</span><div class="token-preview"><span class="swatch" style="background:#F87171;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-danger-500</code><span class="token-value">#EF4444</span><div class="token-preview"><span class="swatch" style="background:#EF4444;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-danger-600</code><span class="token-value">#DC2626</span><div class="token-preview"><span class="swatch" style="background:#DC2626;"></span></div></div>
+    </div>
+
+    <div class="subsection-label">Gray</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--color-white</code><span class="token-value">#FFFFFF</span><div class="token-preview"><span class="swatch" style="background:#FFFFFF;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-gray-50</code><span class="token-value">#F8FAFC</span><div class="token-preview"><span class="swatch" style="background:#F8FAFC;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-gray-100</code><span class="token-value">#F1F5F9</span><div class="token-preview"><span class="swatch" style="background:#F1F5F9;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-gray-200</code><span class="token-value">#E2E8F0</span><div class="token-preview"><span class="swatch" style="background:#E2E8F0;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-gray-300</code><span class="token-value">#CBD5E1</span><div class="token-preview"><span class="swatch" style="background:#CBD5E1;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-gray-400</code><span class="token-value">#94A3B8</span><div class="token-preview"><span class="swatch" style="background:#94A3B8;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-gray-500</code><span class="token-value">#64748B</span><div class="token-preview"><span class="swatch" style="background:#64748B;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-gray-600</code><span class="token-value">#475569</span><div class="token-preview"><span class="swatch" style="background:#475569;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-gray-700</code><span class="token-value">#334155</span><div class="token-preview"><span class="swatch" style="background:#334155;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-gray-800</code><span class="token-value">#1E293B</span><div class="token-preview"><span class="swatch" style="background:#1E293B;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-gray-900</code><span class="token-value">#0A1929</span><div class="token-preview"><span class="swatch" style="background:#0A1929;"></span></div></div>
+    </div>
+  </section>
+
+
+  <!-- ══ 2. COLOR SEMANTIC ══ -->
+  <section class="doc-section" id="color-semantic">
+    <h2 class="section-heading">Color — Semantic</h2>
+    <p class="section-desc">Role-based aliases that describe intent, not appearance. Always use these in components.</p>
+
+    <div class="subsection-label">Text</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Resolves to</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--color-text-primary</code><span class="token-value token-alias">--color-gray-900 · #0A1929</span><div class="token-preview"><span class="swatch" style="background:#0A1929;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-text-secondary</code><span class="token-value token-alias">--color-gray-500 · #64748B</span><div class="token-preview"><span class="swatch" style="background:#64748B;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-text-muted</code><span class="token-value token-alias">--color-gray-400 · #94A3B8</span><div class="token-preview"><span class="swatch" style="background:#94A3B8;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-text-inverse</code><span class="token-value token-alias">--color-white · #FFFFFF</span><div class="token-preview"><span class="swatch" style="background:#FFFFFF;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-text-brand</code><span class="token-value token-alias">--color-brand-600 · #1343B8</span><div class="token-preview"><span class="swatch" style="background:#1343B8;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-text-success</code><span class="token-value token-alias">--color-success-600 · #047857</span><div class="token-preview"><span class="swatch" style="background:#047857;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-text-warning</code><span class="token-value token-alias">--color-warning-600 · #B45309</span><div class="token-preview"><span class="swatch" style="background:#B45309;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-text-danger</code><span class="token-value token-alias">--color-danger-600 · #DC2626</span><div class="token-preview"><span class="swatch" style="background:#DC2626;"></span></div></div>
+    </div>
+
+    <div class="subsection-label">Background</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Resolves to</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--color-bg-page</code><span class="token-value token-alias">--color-page-bg · #F8FAFC</span><div class="token-preview"><span class="swatch" style="background:#F8FAFC;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-bg-surface</code><span class="token-value token-alias">--color-surface · #FFFFFF</span><div class="token-preview"><span class="swatch" style="background:#FFFFFF;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-bg-subtle</code><span class="token-value token-alias">--color-gray-100 · #F1F5F9</span><div class="token-preview"><span class="swatch" style="background:#F1F5F9;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-bg-brand</code><span class="token-value token-alias">--color-brand-50 · #EEF2FF</span><div class="token-preview"><span class="swatch" style="background:#EEF2FF;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-bg-success</code><span class="token-value token-alias">--color-success-50 · #ECFDF5</span><div class="token-preview"><span class="swatch" style="background:#ECFDF5;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-bg-warning</code><span class="token-value token-alias">--color-warning-50 · #FFFBEB</span><div class="token-preview"><span class="swatch" style="background:#FFFBEB;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-bg-danger</code><span class="token-value token-alias">--color-danger-50 · #FEF2F2</span><div class="token-preview"><span class="swatch" style="background:#FEF2F2;"></span></div></div>
+    </div>
+
+    <div class="subsection-label">Border</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Resolves to</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--color-border-default</code><span class="token-value token-alias">--color-gray-200 · #E2E8F0</span><div class="token-preview"><span class="swatch" style="background:#E2E8F0;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-border-subtle</code><span class="token-value token-alias">--color-gray-100 · #F1F5F9</span><div class="token-preview"><span class="swatch" style="background:#F1F5F9;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-border-strong</code><span class="token-value token-alias">--color-gray-300 · #CBD5E1</span><div class="token-preview"><span class="swatch" style="background:#CBD5E1;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-border-brand</code><span class="token-value token-alias">--color-brand-500 · #1A56DB</span><div class="token-preview"><span class="swatch" style="background:#1A56DB;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-border-success</code><span class="token-value token-alias">--color-success-500 · #059669</span><div class="token-preview"><span class="swatch" style="background:#059669;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-border-warning</code><span class="token-value token-alias">--color-warning-500 · #D97706</span><div class="token-preview"><span class="swatch" style="background:#D97706;"></span></div></div>
+      <div class="token-row"><code class="token-name">--color-border-danger</code><span class="token-value token-alias">--color-danger-500 · #EF4444</span><div class="token-preview"><span class="swatch" style="background:#EF4444;"></span></div></div>
+    </div>
+  </section>
+
+
+  <!-- ══ 3. GRADIENTS ══ -->
+  <section class="doc-section" id="gradients">
+    <h2 class="section-heading">Gradients</h2>
+    <p class="section-desc">Pre-composed gradient values used for brand surfaces, dark overlays, and progress fills.</p>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--gradient-brand</code><span class="token-value">linear-gradient(29.56deg, #1A56DB 13.4%, #2563EB 50%, #1D4ED8 86.6%)</span><div class="token-preview"><span class="gradient-swatch" style="background:linear-gradient(29.56deg,#1A56DB 13.4%,#2563EB 50%,#1D4ED8 86.6%);"></span></div></div>
+      <div class="token-row"><code class="token-name">--gradient-dark</code><span class="token-value">linear-gradient(135deg, #0A1929 0%, #1E293B 100%)</span><div class="token-preview"><span class="gradient-swatch" style="background:linear-gradient(135deg,#0A1929 0%,#1E293B 100%);"></span></div></div>
+      <div class="token-row"><code class="token-name">--gradient-progress</code><span class="token-value">linear-gradient(90deg, #1A56DB, #A3B8FF)</span><div class="token-preview"><span class="gradient-swatch" style="background:linear-gradient(90deg,#1A56DB,#A3B8FF);"></span></div></div>
+    </div>
+  </section>
+
+
+  <!-- ══ 4. TYPOGRAPHY ══ -->
+  <section class="doc-section" id="typography">
+    <h2 class="section-heading">Typography</h2>
+    <p class="section-desc">All type tokens use Inter across heading, sans, and mono roles. The type scale is in pixels, not rems.</p>
+
+    <div class="subsection-label">Font Families</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--font-heading</code><span class="token-value">'Inter', system-ui, -apple-system, sans-serif</span><div class="token-preview"><span class="type-sample" style="font-family:'Inter',sans-serif;font-weight:600;font-size:13px;">Neuron Aa</span></div></div>
+      <div class="token-row"><code class="token-name">--font-sans</code><span class="token-value">'Inter', system-ui, -apple-system, sans-serif</span><div class="token-preview"><span class="type-sample" style="font-family:'Inter',sans-serif;font-weight:400;font-size:13px;">Neuron Aa</span></div></div>
+      <div class="token-row"><code class="token-name">--font-mono</code><span class="token-value">'Inter', system-ui, -apple-system, sans-serif</span><div class="token-preview"><span class="type-sample" style="font-family:'Inter',sans-serif;font-weight:400;font-size:13px;">0123456789</span></div></div>
+    </div>
+
+    <div class="subsection-label">Font Size</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--text-2xs</code><span class="token-value">10px</span><div class="token-preview"><span class="type-sample" style="font-size:10px;">The quick brown fox</span></div></div>
+      <div class="token-row"><code class="token-name">--text-xs</code><span class="token-value">12px</span><div class="token-preview"><span class="type-sample" style="font-size:12px;">The quick brown fox</span></div></div>
+      <div class="token-row"><code class="token-name">--text-sm</code><span class="token-value">12px</span><div class="token-preview"><span class="type-sample" style="font-size:12px;">The quick brown fox</span></div></div>
+      <div class="token-row"><code class="token-name">--text-base</code><span class="token-value">14px</span><div class="token-preview"><span class="type-sample" style="font-size:14px;">The quick brown fox</span></div></div>
+      <div class="token-row"><code class="token-name">--text-lg</code><span class="token-value">16px</span><div class="token-preview"><span class="type-sample" style="font-size:16px;">The quick brown fox</span></div></div>
+      <div class="token-row"><code class="token-name">--text-xl</code><span class="token-value">18px</span><div class="token-preview"><span class="type-sample" style="font-size:18px;">The quick brown fox</span></div></div>
+      <div class="token-row"><code class="token-name">--text-2xl</code><span class="token-value">20px</span><div class="token-preview"><span class="type-sample" style="font-size:20px;">The quick brown fox</span></div></div>
+      <div class="token-row"><code class="token-name">--text-3xl</code><span class="token-value">24px</span><div class="token-preview"><span class="type-sample" style="font-size:24px;">The quick brown fox</span></div></div>
+      <div class="token-row"><code class="token-name">--text-4xl</code><span class="token-value">32px</span><div class="token-preview"><span class="type-sample" style="font-size:32px;">Heading</span></div></div>
+      <div class="token-row"><code class="token-name">--text-5xl</code><span class="token-value">38px</span><div class="token-preview"><span class="type-sample" style="font-size:38px;">Heading</span></div></div>
+    </div>
+
+    <div class="subsection-label">Font Weight</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--weight-regular</code><span class="token-value">400</span><div class="token-preview"><span class="type-sample" style="font-weight:400;font-size:14px;">Regular</span></div></div>
+      <div class="token-row"><code class="token-name">--weight-medium</code><span class="token-value">500</span><div class="token-preview"><span class="type-sample" style="font-weight:500;font-size:14px;">Medium</span></div></div>
+      <div class="token-row"><code class="token-name">--weight-semibold</code><span class="token-value">600</span><div class="token-preview"><span class="type-sample" style="font-weight:600;font-size:14px;">Semibold</span></div></div>
+      <div class="token-row"><code class="token-name">--weight-bold</code><span class="token-value">700</span><div class="token-preview"><span class="type-sample" style="font-weight:700;font-size:14px;">Bold</span></div></div>
+    </div>
+
+    <div class="subsection-label">Line Height</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--leading-tight</code><span class="token-value">1.2</span><div class="token-preview"><span class="type-sample" style="font-size:11px;color:var(--color-text-muted);">Headings &amp; display</span></div></div>
+      <div class="token-row"><code class="token-name">--leading-snug</code><span class="token-value">1.4</span><div class="token-preview"><span class="type-sample" style="font-size:11px;color:var(--color-text-muted);">Subheadings</span></div></div>
+      <div class="token-row"><code class="token-name">--leading-normal</code><span class="token-value">1.5</span><div class="token-preview"><span class="type-sample" style="font-size:11px;color:var(--color-text-muted);">Body text</span></div></div>
+      <div class="token-row"><code class="token-name">--leading-relaxed</code><span class="token-value">1.6</span><div class="token-preview"><span class="type-sample" style="font-size:11px;color:var(--color-text-muted);">Long-form / descriptions</span></div></div>
+    </div>
+
+    <div class="subsection-label">Letter Spacing</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--tracking-tight</code><span class="token-value">-0.5px</span><div class="token-preview"><span class="type-sample" style="letter-spacing:-0.5px;font-size:14px;">Large headings</span></div></div>
+      <div class="token-row"><code class="token-name">--tracking-normal</code><span class="token-value">0</span><div class="token-preview"><span class="type-sample" style="letter-spacing:0;font-size:14px;">Body &amp; UI text</span></div></div>
+      <div class="token-row"><code class="token-name">--tracking-wide</code><span class="token-value">0.04em</span><div class="token-preview"><span class="type-sample" style="letter-spacing:0.04em;font-size:14px;">Labels</span></div></div>
+      <div class="token-row"><code class="token-name">--tracking-wider</code><span class="token-value">0.07em</span><div class="token-preview"><span class="type-sample" style="letter-spacing:0.07em;font-size:11px;text-transform:uppercase;font-weight:700;">CAPS LABELS</span></div></div>
+    </div>
+  </section>
+
+
+  <!-- ══ 5. SPACING ══ -->
+  <section class="doc-section" id="spacing">
+    <h2 class="section-heading">Spacing</h2>
+    <p class="section-desc">An 8px base grid. All spacing tokens are multiples or half-multiples of 8px. Use these for padding, margins, and gaps.</p>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--space-1</code><span class="token-value">4px</span><div class="token-preview"><span class="space-bar" style="width:4px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--space-2</code><span class="token-value">8px</span><div class="token-preview"><span class="space-bar" style="width:8px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--space-3</code><span class="token-value">12px</span><div class="token-preview"><span class="space-bar" style="width:12px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--space-4</code><span class="token-value">16px</span><div class="token-preview"><span class="space-bar" style="width:16px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--space-5</code><span class="token-value">20px</span><div class="token-preview"><span class="space-bar" style="width:20px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--space-6</code><span class="token-value">24px</span><div class="token-preview"><span class="space-bar" style="width:24px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--space-7</code><span class="token-value">28px</span><div class="token-preview"><span class="space-bar" style="width:28px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--space-8</code><span class="token-value">32px</span><div class="token-preview"><span class="space-bar" style="width:32px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--space-9</code><span class="token-value">36px</span><div class="token-preview"><span class="space-bar" style="width:36px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--space-10</code><span class="token-value">40px</span><div class="token-preview"><span class="space-bar" style="width:40px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--space-12</code><span class="token-value">48px</span><div class="token-preview"><span class="space-bar" style="width:48px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--space-16</code><span class="token-value">64px</span><div class="token-preview"><span class="space-bar" style="width:64px;"></span></div></div>
+    </div>
+  </section>
+
+
+  <!-- ══ 6. RADIUS ══ -->
+  <section class="doc-section" id="radius">
+    <h2 class="section-heading">Border Radius</h2>
+    <p class="section-desc">Consistent corner rounding across all surfaces. Use <code style="font-size:11px;background:var(--color-bg-brand);color:var(--color-text-brand);padding:1px 5px;border-radius:3px;">--radius-md</code> for cards and panels, <code style="font-size:11px;background:var(--color-bg-brand);color:var(--color-text-brand);padding:1px 5px;border-radius:3px;">--radius-sm</code> for buttons and inputs.</p>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--radius-xs</code><span class="token-value">4px</span><div class="token-preview"><span class="radius-box" style="border-radius:4px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--radius-sm</code><span class="token-value">6px</span><div class="token-preview"><span class="radius-box" style="border-radius:6px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--radius-md</code><span class="token-value">10px</span><div class="token-preview"><span class="radius-box" style="border-radius:10px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--radius-lg</code><span class="token-value">14px</span><div class="token-preview"><span class="radius-box" style="border-radius:14px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--radius-xl</code><span class="token-value">18px</span><div class="token-preview"><span class="radius-box" style="border-radius:18px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--radius-full</code><span class="token-value">9999px</span><div class="token-preview"><span class="radius-box" style="border-radius:9999px;width:28px;"></span></div></div>
+    </div>
+  </section>
+
+
+  <!-- ══ 7. SHADOWS ══ -->
+  <section class="doc-section" id="shadows">
+    <h2 class="section-heading">Shadows</h2>
+    <p class="section-desc">A five-step elevation scale from near-flat surfaces to floating overlays.</p>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--shadow-xs</code><span class="token-value">0 1px 2px rgba(0,0,0,0.05)</span><div class="token-preview"><span class="shadow-box" style="box-shadow:0 1px 2px rgba(0,0,0,0.05);"></span></div></div>
+      <div class="token-row"><code class="token-name">--shadow-sm</code><span class="token-value">0 2px 6px rgba(0,0,0,0.06)</span><div class="token-preview"><span class="shadow-box" style="box-shadow:0 2px 6px rgba(0,0,0,0.06);"></span></div></div>
+      <div class="token-row"><code class="token-name">--shadow-md</code><span class="token-value">0 4px 12px rgba(0,0,0,0.08)</span><div class="token-preview"><span class="shadow-box" style="box-shadow:0 4px 12px rgba(0,0,0,0.08);"></span></div></div>
+      <div class="token-row"><code class="token-name">--shadow-lg</code><span class="token-value">0 8px 24px rgba(0,0,0,0.12)</span><div class="token-preview"><span class="shadow-box" style="box-shadow:0 8px 24px rgba(0,0,0,0.12);"></span></div></div>
+      <div class="token-row"><code class="token-name">--shadow-xl</code><span class="token-value">0 16px 40px rgba(0,0,0,0.16)</span><div class="token-preview"><span class="shadow-box" style="box-shadow:0 16px 40px rgba(0,0,0,0.16);"></span></div></div>
+    </div>
+  </section>
+
+
+  <!-- ══ 8. BORDERS ══ -->
+  <section class="doc-section" id="borders">
+    <h2 class="section-heading">Borders</h2>
+    <p class="section-desc">Shorthand composite tokens. Each expands to <code style="font-size:11px;background:var(--color-bg-brand);color:var(--color-text-brand);padding:1px 5px;border-radius:3px;">1px solid &lt;color&gt;</code>.</p>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Preview</span></div>
+      <div class="token-row"><code class="token-name">--border-default</code><span class="token-value">1px solid #E2E8F0</span><div class="token-preview"><span style="display:inline-block;width:40px;height:0;border-top:1px solid #E2E8F0;margin-top:14px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--border-subtle</code><span class="token-value">1px solid #F1F5F9</span><div class="token-preview"><span style="display:inline-block;width:40px;height:0;border-top:1px solid #F1F5F9;margin-top:14px;"></span></div></div>
+      <div class="token-row"><code class="token-name">--border-strong</code><span class="token-value">1px solid #CBD5E1</span><div class="token-preview"><span style="display:inline-block;width:40px;height:0;border-top:1px solid #CBD5E1;margin-top:14px;"></span></div></div>
+    </div>
+  </section>
+
+
+  <!-- ══ 9. LAYOUT ══ -->
+  <section class="doc-section" id="layout">
+    <h2 class="section-heading">Layout</h2>
+    <p class="section-desc">Structural dimensions for the shell: sidebar, topbar, banner, and the 8px grid system.</p>
+
+    <div class="subsection-label">Shell Dimensions</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Used for</span></div>
+      <div class="token-row"><code class="token-name">--sidebar-width</code><span class="token-value">224px</span><div class="token-preview" style="font-size:11px;color:var(--color-text-muted);">Left nav width</div></div>
+      <div class="token-row"><code class="token-name">--topbar-height</code><span class="token-value">64px</span><div class="token-preview" style="font-size:11px;color:var(--color-text-muted);">Page topbar</div></div>
+      <div class="token-row"><code class="token-name">--banner-height</code><span class="token-value">40px</span><div class="token-preview" style="font-size:11px;color:var(--color-text-muted);">Global status banner</div></div>
+      <div class="token-row"><code class="token-name">--global-topbar-height</code><span class="token-value">56px</span><div class="token-preview" style="font-size:11px;color:var(--color-text-muted);">Primary nav bar</div></div>
+      <div class="token-row"><code class="token-name">--content-gap</code><span class="token-value">var(--space-4) · 16px</span><div class="token-preview" style="font-size:11px;color:var(--color-text-muted);">Gap between content panels</div></div>
+    </div>
+
+    <div class="subsection-label">8px Grid System</div>
+    <div class="token-table">
+      <div class="token-table-head"><span>Token</span><span>Value</span><span>Used for</span></div>
+      <div class="token-row"><code class="token-name">--grid-unit</code><span class="token-value">8px</span><div class="token-preview" style="font-size:11px;color:var(--color-text-muted);">Base grid unit</div></div>
+      <div class="token-row"><code class="token-name">--grid-gutter</code><span class="token-value">24px</span><div class="token-preview" style="font-size:11px;color:var(--color-text-muted);">Column gap (3 units)</div></div>
+      <div class="token-row"><code class="token-name">--grid-margin</code><span class="token-value">32px</span><div class="token-preview" style="font-size:11px;color:var(--color-text-muted);">Content edge padding (4 units)</div></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Copy toast -->
+<div class="copy-toast" id="copy-toast">Copied!</div>
+
+<script>
+  // ── Scroll-spy sidebar ──
+  (function() {
+    var sections = document.querySelectorAll('.doc-section');
+    var links = document.querySelectorAll('.sidebar-link');
+    function getActive() {
+      var scrollY = window.scrollY + 80;
+      var active = null;
+      sections.forEach(function(sec) { if (sec.offsetTop <= scrollY) active = sec.id; });
+      return active;
+    }
+    function update() {
+      var id = getActive();
+      links.forEach(function(l) {
+        var href = l.getAttribute('href').replace('#','');
+        l.classList.toggle('active', href === id);
+      });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+
+  // ── Copy token name on click ──
+  (function() {
+    var toast = document.getElementById('copy-toast');
+    var timer;
+    document.querySelectorAll('.token-name').forEach(function(el) {
+      el.addEventListener('click', function() {
+        var text = el.textContent.trim();
+        navigator.clipboard.writeText(text).then(function() {
+          toast.classList.add('show');
+          clearTimeout(timer);
+          timer = setTimeout(function() { toast.classList.remove('show'); }, 1500);
+        });
+      });
+    });
+  })();
+
+  // ── Token search / filter ──
+  (function() {
+    var input = document.getElementById('token-search');
+    var noResults = document.getElementById('no-results');
+    var rows = document.querySelectorAll('.token-row');
+
+    input.addEventListener('input', function() {
+      var q = input.value.trim().toLowerCase();
+      var visible = 0;
+
+      rows.forEach(function(row) {
+        var name = row.querySelector('.token-name');
+        var val = row.querySelector('.token-value');
+        var text = (name ? name.textContent : '') + ' ' + (val ? val.textContent : '');
+        var match = !q || text.toLowerCase().includes(q);
+        row.classList.toggle('hidden', !match);
+        if (match) visible++;
+      });
+
+      // Show/hide subsection labels and tables based on visible rows
+      document.querySelectorAll('.token-table').forEach(function(table) {
+        var hasVisible = table.querySelectorAll('.token-row:not(.hidden)').length > 0;
+        table.style.display = hasVisible ? '' : 'none';
+      });
+      document.querySelectorAll('.subsection-label').forEach(function(label) {
+        var next = label.nextElementSibling;
+        label.style.display = (next && next.style.display === 'none') ? 'none' : '';
+      });
+      document.querySelectorAll('.doc-section').forEach(function(sec) {
+        var hasVisible = sec.querySelectorAll('.token-row:not(.hidden)').length > 0;
+        sec.style.display = hasVisible || !q ? '' : 'none';
+      });
+
+      noResults.classList.toggle('visible', q && visible === 0);
+    });
+  })();
+</script>
+</body>
+</html>
