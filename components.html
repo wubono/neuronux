@@ -179,12 +179,12 @@
       min-width: 1280px;
     }
 
-    /* ── Page Header ── */
-    .page-header {
+    /* ── Doc Top Nav ── */
+    .doc-topnav {
       position: sticky;
       top: 0;
       z-index: 100;
-      height: var(--global-topbar-height);
+      height: 56px;
       background: var(--color-bg-surface);
       border-bottom: var(--border-default);
       display: flex;
@@ -192,33 +192,29 @@
       justify-content: space-between;
       padding: 0 var(--space-8);
     }
-
-    .wordmark {
-      font-family: var(--font-heading);
-      font-size: var(--text-xl);
-      font-weight: var(--weight-bold);
-      color: var(--color-brand-500);
-      letter-spacing: var(--tracking-tight);
+    .topnav-tabs {
+      display: flex;
+      align-items: stretch;
+      height: 56px;
     }
-
-    .header-right {
+    .topnav-tab {
       display: flex;
       align-items: center;
-      gap: var(--space-4);
+      gap: 5px;
+      padding: 0 var(--space-5);
       font-size: var(--text-sm);
-      color: var(--color-text-secondary);
-    }
-
-    .header-right a {
-      color: var(--color-brand-500);
-      text-decoration: none;
       font-weight: var(--weight-medium);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s;
+      white-space: nowrap;
     }
-
-    .header-right a:hover { text-decoration: underline; }
-
-    .header-divider {
-      color: var(--color-text-muted);
+    .topnav-tab:hover { color: var(--color-text-primary); }
+    .topnav-tab.active {
+      color: var(--color-brand-500);
+      border-bottom-color: var(--color-brand-500);
+      font-weight: var(--weight-semibold);
     }
 
     /* ── Left Nav ── */
@@ -1373,14 +1369,15 @@
 </head>
 <body>
 
-<!-- ── PAGE HEADER ── -->
-<header class="page-header">
-  <span class="wordmark">neuron</span>
-  <div class="header-right">
-    <span>Components &middot; Library</span>
-    <span class="header-divider">&middot;</span>
-    <a href="foundation.html"><i class="ph ph-arrow-left" style="font-size:12px;"></i> Foundation</a>
-  </div>
+<!-- ── TOP NAV ── -->
+<header class="doc-topnav">
+  <img src="https://www.figma.com/api/mcp/asset/b495e5f9-4ed4-4837-b39a-103a08072925" alt="neuron" style="height:22px;width:auto;">
+  <nav class="topnav-tabs">
+    <a class="topnav-tab" href="foundation.html">Foundation</a>
+    <a class="topnav-tab active" href="components.html">Components</a>
+    <a class="topnav-tab" href="tokens.html">Tokens</a>
+    <a class="topnav-tab" href="neuron_v2.html" target="_blank">Prototype <i class="ph ph-arrow-square-out" style="font-size:11px;"></i></a>
+  </nav>
 </header>
 
 <!-- ── LEFT NAV ── -->
