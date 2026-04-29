@@ -2588,14 +2588,7 @@
 
   <!-- Sidebar logo strip -->
   <div class="sidebar-logo-strip" id="sidebar-logo-strip">
-    <div class="sidebar-logo-mark">
-      <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
-        <path d="M4 14V6.5C4 5.4 4.9 4.5 6 4.5C7.1 4.5 8 5.4 8 6.5V14" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M8 8.5C8 7.4 8.9 6.5 10 6.5C11.1 6.5 12 7.4 12 8.5V14" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
-        <circle cx="13.5" cy="4.5" r="1.4" fill="white"/>
-      </svg>
-    </div>
-    <span class="sidebar-logo-text">neuron</span>
+    <img src="https://www.figma.com/api/mcp/asset/b495e5f9-4ed4-4837-b39a-103a08072925" alt="neuron" style="height:24px;width:auto;">
   </div>
 
   <!-- ══════════════════════════════════════════════════════════════
@@ -2681,7 +2674,7 @@
         </div>
       </div>
       <!-- Messages -->
-      <button class="topbar-icon-btn" title="Messages" aria-label="Messages">
+      <button class="topbar-icon-btn" title="Messages" aria-label="Messages" onclick="window.location='messages.html'">
         <i class="ph ph-chat-circle-dots" style="font-size:var(--text-2xl);"></i>
       </button>
       <!-- Divider -->
@@ -2690,7 +2683,7 @@
       <div class="user-dropdown-wrap">
         <button class="user-menu-trigger" id="user-menu-btn" aria-haspopup="true" aria-expanded="false">
           <div class="topbar-avatar">
-            <img src="https://www.gravatar.com/avatar/1f8b5bd3be6a555a12f13f9f0a5af585?s=64&d=mp" alt="Wojciech Boniaszczuk">
+            <img src="https://www.figma.com/api/mcp/asset/3870a376-f8ba-4ea7-817f-49251f23f9e8" alt="Wojciech Boniaszczuk">
           </div>
           <div class="user-info-block">
             <span class="user-menu-name">Wojciech Boniaszczuk</span>
@@ -2731,35 +2724,35 @@
       <!-- Nav -->
       <nav class="sidebar-nav">
         <div class="nav-group">
-          <div class="nav-item active" data-nav>
+          <a class="nav-item active" href="neuron_v2.html" data-nav>
             <i class="ph ph-house"></i>
             <span class="nav-label">Home</span>
-          </div>
-          <div class="nav-item" data-nav>
+          </a>
+          <a class="nav-item" href="payments.html" data-nav>
             <i class="ph ph-credit-card"></i>
             <span class="nav-label">Payments</span>
-          </div>
-          <div class="nav-item" data-nav>
+          </a>
+          <a class="nav-item" href="my-loans.html" data-nav>
             <i class="ph ph-chart-donut"></i>
             <span class="nav-label">My Loans</span>
-          </div>
-          <div class="nav-item" data-nav>
+          </a>
+          <a class="nav-item" href="documents.html" data-nav>
             <i class="ph ph-files"></i>
             <span class="nav-label">Documents</span>
-          </div>
-          <div class="nav-item" data-nav>
+          </a>
+          <a class="nav-item" href="tools.html" data-nav>
             <i class="ph ph-wrench"></i>
             <span class="nav-label">Tools</span>
-          </div>
+          </a>
         </div>
       </nav>
 
       <!-- Footer -->
       <div class="sidebar-footer">
-        <div class="nav-item" data-nav>
-          <i class="ph ph-lifebuoy"></i>
-          <span class="nav-label">Support</span>
-        </div>
+        <a class="nav-item" href="help-support.html" data-nav>
+          <i class="ph ph-headset"></i>
+          <span class="nav-label">Help &amp; Support</span>
+        </a>
       </div>
 
     </aside>
